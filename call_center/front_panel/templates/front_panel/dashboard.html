@@ -1,0 +1,729 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/progress.css' %}">
+
+        <title>Dashboard</title>
+
+        <meta name="description" content="">
+        <!-- responsive tag -->
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+
+    <body>
+
+        <div class="dashboard-container">
+
+            <div class="row db-content">
+
+                <div class="main-container col-12">
+                    <div class="extensions col-4">
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="extension-kid col-5">
+                                <div class="col-1 uptime-icon card-icon" style="--icon-padding: 13px;">
+                                    <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+        
+                                <div class="extension-text">
+        
+                                    <div class="row">
+                                        <p>
+                                            <a class="fw-bold" style="color: black; text-decoration:none;"> Name </a> <br>
+                                            description
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding-bottom: 17px;"></div>
+                    
+                    </div>
+
+                    <div class="smol-container col-2">
+
+                        <div class="smol queue-container col-12">
+                            <div>
+                                QUEUES
+                            </div>
+
+                            <hr class="seperator">
+
+                            <div class="queue-details">
+                                <div class="row">
+                                    Queue 1
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="smol queue-container col-12">
+                            <div>
+                                CONFRENCES
+                            </div>
+                            <hr class="seperator">
+                            <div class="queue-details">
+                                <div class="row">
+                                    Conference 1
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="smol queue-container col-12">
+                            <div>
+                                PARKING LOTS
+                            </div>
+                            <hr class="seperator">
+                            <div class="queue-details">
+                                <div class="row">
+                                    Default Parking
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="smol queue-container col-12">
+                            <div>
+                                QUEUE OVERVIEW - 3100
+                            </div>
+                            <hr class="seperator">
+                            <div class="queue-overview col-12">
+
+                                <div class="set-size charts-container col-5">
+
+                                    <div class="pie-wrapper progress-45 style-2">
+                                        <span class="label">45<span class="smaller">%</span></span>
+                                        <div class="pie">
+                                        <div class="left-side half-circle"></div>
+                                        <div class="right-side half-circle"></div>
+                                        </div>
+                                        <div class="shadow"></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row col-6 queue-box">
+                                    <div class="col-12 queue-text">
+                                        <div class="queue-reading"> 0 </div> <br>
+                                        <div class="queue-reading"> Completed Calls </div>
+                                    </div>
+
+                                    <hr class="seperator">
+
+                                    <div class="col-12 queue-text">
+                                        <div class="queue-reading"> 0 </div> <br>
+                                        <div class="queue-reading"> Abandoned Calls </div>
+                                    </div>
+
+                                    <hr class="seperator">
+
+                                    <div class="col-12 queue-text">
+                                        <div class="queue-reading"> 10 </div> <br>
+                                        <div class="queue-reading"> SLA Target </div>
+                                    </div>
+
+                                    <hr class="seperator">
+
+                                </div>
+
+                                <div class="col-6">
+                                    0 <br>
+                                    Waiting Calls
+                                </div>
+
+                                <div class="col-6">
+                                    00:00 <br>
+                                    Longest Hold Call
+                                </div>
+
+                                <div class="col-6">
+                                    2 <br>
+                                    LoggedIn Members
+                                </div>
+
+                                <div class="col-6">
+                                    2 <br>
+                                    Available Members
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-5 bg-area">
+                        <div> QUEUES STATS SUMMARY </div>
+                        <hr>
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Queue</th>
+                                    <th scope="col">Strategy</th>
+                                    <th scope="col">LoggedIn Members</th>
+                                    <th scope="col">Available Members</th>
+                                    <th scope="col">Queued Calls</th>
+                                    <th scope="col">Completed Calls</th>
+                                    <th scope="col">Abandoned Calls</th>
+                                    <th scope="col">Service Level</th>
+                                    <th scope="col">Longest Hold</th>
+                                    <th scope="col">Hold Time</th>
+                                    <th scope="col">Talk Time</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Support</td>
+                                    <td>RRB</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>0.0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                  </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                    <div class="queued-callscontainer col-3 mt-3">
+                        QUEUED CALLS
+                        <hr>
+
+                        {% comment %} remove padding before working {% endcomment %}
+
+                        <div class="queued-calls"></div>
+                        <div class="queued-calls"></div>
+                        <div style="padding-bottom: 23px;"></div>
+
+                    </div>
+
+                    <div class="trunk-container col-2 mt-3">
+                        TRUNKS
+                        <hr>
+
+                        {% comment %} remove padding before working {% endcomment %}
+
+                        <div class="trunk-card">
+                            My Trunk
+                        </div>
+
+                        <div class="queued-calls"></div>
+                        <div class="queued-calls"></div>
+
+                    </div>
+
+                    <div class="queue-member-card col-5 mt-4">
+                        QUEUE MEMBERS SUMMARY
+
+                        <hr>
+
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Member</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">InCall</th>
+                                <th scope="col">Calls Taken</th>
+                                <th scope="col">Last Call</th>
+                                <th scope="col">Paused Reason</th>
+                                <th scope="col">Pause Time</th>
+                                <th scope="col">Calls History</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>member 1</td>
+                                <td>Y</td>
+                                <td>No</td>
+                                <td>0</td>
+                                <td>--</td>
+                                <td>Lunch</td>
+                                <td>00:14</td>
+                                <td>B</td>
+                              </tr>
+                              <tr>
+                                <td>member 2</td>
+                                <td>G</td>
+                                <td>No</td>
+                                <td>0</td>
+                                <td>--</td>
+                                <td></td>
+                                <td>--:--</td>
+                                <td>B</td>
+                              </tr>
+                              <tr>
+                                <td>member 3</td>
+                                <td>G</td>
+                                <td>No</td>
+                                <td>0</td>
+                                <td>--</td>
+                                <td></td>
+                                <td>--:--</td>
+                                <td>B</td>
+                              </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    
+                </div>
+
+                <div class="phone col-2">
+                    MY EXTENSIONS
+
+                    <hr>
+
+                    No available calls
+
+                    <hr class="seperator">
+
+
+                    <div style="padding-bottom: 70px;"></div>
+
+                    <hr class="seperator">
+
+                    <div class="row phone-numbers">
+                        <div class="col-4 dial-numbers">1</div>
+                        <div class="col-4 dial-numbers">2</div>
+                        <div class="col-4 dial-numbers">3</div>
+                    </div>
+
+                    <div class="row phone-numbers">
+                        <div class="col-4 dial-numbers">4</div>
+                        <div class="col-4 dial-numbers">5</div>
+                        <div class="col-4 dial-numbers">6</div>
+                    </div>
+
+                    <div class="row phone-numbers">
+                        <div class="col-4 dial-numbers">7</div>
+                        <div class="col-4 dial-numbers">8</div>
+                        <div class="col-4 dial-numbers">9</div>
+                    </div>
+
+                    <div class="row call-btn">
+                        <div class="call-icon-seperator col-5"></div>
+                        <div class="col-1 card-icon">
+                            <svg class="card-svg" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="my-queue col-5">
+                    MY QUEUES
+
+                    <hr>
+
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Queue</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Calls Taken</th>
+                            <th scope="col">Queued Calls</th>
+                            <th scope="col">Pause Time</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Support</td>
+                            <td>Y</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>--</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="my-queue col-4">
+                    QUEUES CALLS COUNTER
+
+                    <hr>
+
+                    <div class="counter-heading col-9">
+                        Support
+
+                        <div class="counter-number">
+                            0
+                        </div>
+
+                        <div class="counter-seperated">
+                            <div class="row">
+                                <div class="abandoned-calls col-7">
+                                    1 <br>
+                                    Abandoned Calls
+                                </div>
+                                <div class="completed-calls col-5">
+                                    0 <br>
+                                    Abandoned Calls
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    
+                    
+                </div>
+    
+            </div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="{% static '/js/home.js' %}"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #c0c0bf;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    /* border: 1px solid black; */
+}
+
+.details-card {
+    background-color: white;
+    border-color: black;
+    /* width: 395px; */
+    height: 60px;
+    margin: 5px;
+    border: solid 1px;
+    /* border-radius: 5px; */
+    /* padding: 5px; */
+}
+
+.disk-usage {
+    padding: 0;
+    padding-left: 12px;
+}
+
+.uptime-details {
+    background-color: white;
+    border: none;
+    /* width: 350px; */
+    height: 70px;
+    margin: 5px;
+}
+
+.sidebar-icons {
+    fill: black;
+}
+
+.card-svg {
+    fill: white;
+}
+
+.card-icon {
+    fill: white;
+    border-radius: 100%;
+    background-color: #88c351;
+    margin-top: 5px;
+    padding-top: 12px;
+    width: 50px;
+    height: 50px;
+}
+
+.card-text {
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 90.33%;
+}
+
+.uptime-card {
+    margin: 5px;
+    margin-top: 15px;
+    /* border-radius: 5px; */
+    border: solid 1px black;
+    background-color: white;
+}
+
+.uptime-icon {
+    padding-left: var(--icon-padding);
+}
+
+.top-cards {
+    margin-left: 1px;
+    width: 97.4%;
+    padding: 10px;
+}
+
+.chart {
+    border: 1px solid white;
+    background-color: white;
+    margin: 5px;
+}
+
+.box {
+    position: relative;
+    display: inline-block;
+}
+
+.box svg {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 1px;
+    top: 0;
+    bottom: 10px;
+    margin: auto;
+}
+
+.extensions {
+    background-color: white;
+}
+
+.extension-kid {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 0;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.smol-container {
+    padding-top: 0;
+    width: 20.66%;
+}
+
+.phone{
+    background-color: white;
+    margin-left: 16px;
+}
+
+.counter-number{
+    font-size: 3cm;
+}
+
+.counter-seperated {
+    font-size: medium;
+}
+
+.counter-heading{
+    color: white;
+    background-color: #484c5c;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.my-queue{
+    background-color: white;
+    margin-left: 10px;
+}
+
+.dial-numbers:hover {
+    background-color: lightgray;
+    cursor: default;
+}
+
+.row.phone-numbers {
+    text-align: center;
+}
+
+.smol {
+    background-color: white;
+    margin-left: 5px;
+    margin-bottom: 15px;
+}
+
+.seperator {
+    margin: 0;
+}
+
+.bg-area{
+    background-color: white;
+    width: 45.66%;
+}
+
+.queue-details {
+    background-color: rgb(248, 248, 248);
+    /* margin-left: 15px; */
+    margin-top: 10px;
+    padding-left: 15px;
+}
+
+.trunk-card{
+    background-color: rgb(248, 248, 248);
+    margin-top: 10px;
+    /* padding-left: 15px; */
+}
+
+.overview-text {
+    width: 100%;
+    padding-left: 55px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.queue-part{
+    width: 10%
+}
+
+.queued-callscontainer{
+    background-color: white;
+}
+
+.queued-calls{
+    padding-bottom: 32px;
+}
+
+.trunk-container{
+    width: 20.5%;
+    background-color: white;
+    margin-left: 5px;
+}
+
+.queue-member-card {
+    width: 45.5%;
+    background-color: white;
+}
+
+.queue-text {
+    width: 100%;
+    padding: 0;
+    /* padding-left: 35px;
+    padding-top: 5px;
+    padding-bottom: 15px; */
+}
+
+.queue-overview {
+    padding: 0;
+}
+
+.queue-box {
+    padding: 0;
+    padding-right: 4px;
+    float: right;
+}
+
+.queue-reading {
+    float: right;
+}
+
+.set-size.charts-container.col-5 {
+    padding: 0;
+}

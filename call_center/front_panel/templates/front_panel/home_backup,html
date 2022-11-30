@@ -1,0 +1,388 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/scrollbar.css' %}">
+
+        <title>Control Panel</title>
+
+        <meta name="description" content="">
+        <!-- responsive tag -->
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+
+    <body>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Control Panel</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              {% comment %} <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" href="#">admin</a> {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+        <div class="row main-container">
+
+            <div class="col-2 d-flex phone-number flex-column align-items-stretch flex-shrink-0 bg-white">
+                <div class="search-area">
+                  <input class="num-search form-control form-control-sm col-12" type="text" placeholder="Search Phone">
+                </div>
+
+                <hr>
+
+                <div class="list-group list-group-flush border-bottom scrollarea">
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 8746573859">
+                      <strong class="mb-1">+91 8746573859</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9875843263">
+                      <strong class="mb-1">+91 9875843263</strong>
+                    </div>
+                  </a>
+            
+                  <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 7654893728">
+                      <strong class="mb-1">+91 7654893728</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 09837456372">
+                      <strong class="mb-1">+91 09837456372</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 1239485736">
+                      <strong class="mb-1">+91 1239485736</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 2736475832">
+                      <strong class="mb-1">+91 2736475832</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 7765125364">
+                      <strong class="mb-1">+91 7765125364</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9878767876">
+                      <strong class="mb-1">+91 9878767876</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 1286758493">
+                      <strong class="mb-1">+91 1286758493</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 87645843756">
+                      <strong class="mb-1">+91 87645843756</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9863847563">
+                      <strong class="mb-1">+91 9863847563</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 87634857346">
+                      <strong class="mb-1">+91 87634857346</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 98374637856">
+                      <strong class="mb-1">+91 98374637856</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9382746352">
+                      <strong class="mb-1">+91 9382746352</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9879879876">
+                      <strong class="mb-1">+91 9879879876</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 8872364589">
+                      <strong class="mb-1">+91 8872364589</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9836475387">
+                      <strong class="mb-1">+91 9836475387</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9988336644">
+                      <strong class="mb-1">+91 9988336644</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9384753627">
+                      <strong class="mb-1">+91 9384753627</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 8394673783">
+                      <strong class="mb-1">+91 8394673783</strong>
+                    </div>
+                  </a>
+                  <a class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between draggable_number" id="+91 9384573626">
+                      <strong class="mb-1">+91 9384573626</strong>
+                    </div>
+                  </a>
+                </div>
+            </div>
+
+            <div class="row
+             row-cols-2 row-cols-lg-3 col-10 drop-container">
+                <div class="scrollbar dropable-room col-first col" id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+
+                <div class="scrollbar dropable-room col-first col"  id="style-3">
+                  <div class="room-heading"> Room Name </div>
+
+                  <hr>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
+        <script src="{% static '/js/home.js' %}"></script>
+
+    </body>
+
+</html>
