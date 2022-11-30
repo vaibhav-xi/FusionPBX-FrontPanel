@@ -1,0 +1,3 @@
+./callcenter/Scripts/activate
+
+IP: 143.244.157.215
