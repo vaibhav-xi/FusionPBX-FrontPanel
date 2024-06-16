@@ -1,2 +1,0 @@
-# FusionPBX
- Fusionpbx Front Panel
