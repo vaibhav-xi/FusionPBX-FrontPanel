@@ -1,0 +1,1605 @@
+{% load static %}
+{% load my_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Admin Panel</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static '/images/dashboard/favicon.png' %}" rel="icon">
+    <link href="{% static '/images/dashboard/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/dashboardd.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/database.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/toggle.min.css' %}">
+
+    <style>
+        .spacerh {
+            padding: 10px;
+        }
+        
+        label.dp_label {
+            font-size: medium;
+            padding-bottom: 20px;
+        }
+        
+        .results tr[visible='false'],
+        .no-result {
+            display: none;
+        }
+        
+        .results tr[visible='true'] {
+            display: table-row;
+        }
+        
+        .counter {
+            padding: 8px;
+            color: #ccc;
+        }
+        
+        .dropdown-menu {
+            max-height: 20rem;
+            overflow-y: auto;
+        }
+        
+        button#dropdown_coins {
+            margin: 0;
+        }
+        
+        .select_btn {
+            margin: 0;
+        }
+    </style>
+
+    <style>
+        /* Large devices (desktops, 992px and up) */
+        
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+            .editContainer .card-columns {
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                column-count: 1;
+            }
+        }
+        /* Extra large devices (large desktops, 1200px and up) */
+        
+        @media (min-width: 1200px) {
+            .card-columns {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
+            .editContainer .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+        }
+        
+        .card-columns1 {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+        
+        .card-columns2 {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+        }
+        
+        .destination-select {
+            border: none !important;
+        }
+        
+        .search {
+            margin-bottom: 20px;
+        }
+        
+        .linear_view {
+            display: flex;
+            padding: 20px;
+        }
+        
+        .linear_btn {
+            margin: 0;
+        }
+        
+        .my_counter {
+            padding: 10px;
+        }
+        
+        span.corner_elem {
+            float: right;
+            padding-right: 20px;
+        }
+
+        .tab-pane.fade.pt-3 {
+            overflow-x: scroll;
+            padding: 15px;
+        }
+
+        .agentrs {
+            display: flex;
+        }
+
+        .agr_dropdown {
+            padding: 0px 10px 40px 40px;
+        }
+
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/overlay.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        <div id="spinner_text">Loading...</div>
+    </div>
+
+    <input type="text" style="display:none;" id="selected_filter" value="90_days">
+
+    <div class="modal fade" id="customersettings" tabindex="-1" aria-labelledby="customersettingsLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customersettingsLabel">Client Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Daily Statistics</label>
+                        <input type="checkbox" id="daily_stats" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Weekly Statistics</label>
+                        <input type="checkbox" id="weekly_stats" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Monthly Statistics</label>
+                        <input type="checkbox" id="monthly_stats" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Invoice Creation</label>
+                        <input type="checkbox" id="invoice_creation" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Form Function</label>
+                        <input type="checkbox" id="form_function" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Important Information</label>
+                        <input type="checkbox" id="imp_sw" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Disappearing Info</label>
+                        <input type="checkbox" id="diss_sw" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Sales</label>
+                        <input type="checkbox" id="sales_sw" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="client_details" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="editsettings" tabindex="-1" aria-labelledby="editsettingsLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editsettingsLabel">Client Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6"> UserName </label>
+                        <input type="text" class="form-control" id="edit_username">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Email</label>
+                        <input type="text" class="form-control" id="edit_useremail">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6"> InvoiceEmail </label>
+                        <input type="text" class="form-control" id="edit_invoiceemail">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Street</label>
+                        <input type="text" class="form-control" id="edit_userstreet">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">ZipCode</label>
+                        <input type="text" class="form-control" id="edit_userzip">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Place</label>
+                        <input type="text" class="form-control" id="edit_userplace">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">CompanyName</label>
+                        <input type="text" class="form-control" id="edit_companyname">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">TaxNumber</label>
+                        <input type="text" class="form-control" id="edit_usertax">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="edit_userdetails" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ChangeCallPrice" tabindex="-1" aria-labelledby="ChangeCallPriceLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ChangeCallPriceLabel">Destination Setting</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Destination Name</label>
+                        <input type="text" class="form-control" id="selected_desname1" disabled>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Call Price (Per minute)</label>
+                        <input type="text" class="form-control" id="selected_desprice">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="save_price" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_agent" tabindex="-1" aria-labelledby="create_agentLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create_agentLabel">Create Agent</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Name</label>
+                        <input type="text" class="form-control" id="aname">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Pin</label>
+                        <input type="text" class="form-control" id="apin">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Street</label>
+                        <input type="text" class="form-control" id="astreet">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">ZipCode</label>
+                        <input type="text" class="form-control" id="azip">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">City</label>
+                        <input type="text" class="form-control" id="acity">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Email</label>
+                        <input type="text" class="form-control" id="aeamil">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Tax Number</label>
+                        <input type="text" class="form-control" id="ataxnum">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Sales Tax</label>
+                        <input type="text" class="form-control" id="asalestax">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Account Number</label>
+                        <input type="text" class="form-control" id="aaccountnum">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Bank Name</label>
+                        <input type="text" class="form-control" id="abankname">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">IBAN</label>
+                        <input type="text" class="form-control" id="aiban">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">BIC</label>
+                        <input type="text" class="form-control" id="abic">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Country Code</label>
+                        <input type="text" class="form-control" id="accode" value="+49">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Phone</label>
+                        <input type="text" class="form-control" id="aphone">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="save_agent" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_gateway" tabindex="-1" aria-labelledby="create_gatewayLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create_gatewayLabel">Create Gateway</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Name</label>
+                        <input type="text" class="form-control" id="gateway_name">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Start</label>
+                        <input type="text" class="form-control" id="gateway_start">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">End</label>
+                        <input type="text" class="form-control" id="gateway_end">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="save_gateway" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit_agent" tabindex="-1" aria-labelledby="edit_agentLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit_agentLabel">Edit Agent</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" style="display: none;" class="form-control" id="agent_og">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Name</label>
+                        <input type="text" class="form-control" id="ename">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Pin</label>
+                        <input type="text" class="form-control" id="epin">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Street</label>
+                        <input type="text" class="form-control" id="estreet">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">ZipCode</label>
+                        <input type="text" class="form-control" id="ezip">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">City</label>
+                        <input type="text" class="form-control" id="ecity">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Email</label>
+                        <input type="text" class="form-control" id="eeamil">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Tax Number</label>
+                        <input type="text" class="form-control" id="etaxnum">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Sales Tax</label>
+                        <input type="text" class="form-control" id="esalestax">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Account Number</label>
+                        <input type="text" class="form-control" id="eaccountnum">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Bank Name</label>
+                        <input type="text" class="form-control" id="ebankname">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">IBAN</label>
+                        <input type="text" class="form-control" id="eiban">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">BIC</label>
+                        <input type="text" class="form-control" id="ebic">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Country Code</label>
+                        <input type="text" class="form-control" id="eccode">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Phone</label>
+                        <input type="text" class="form-control" id="ephone">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="editagent" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="GenerateInvoice" tabindex="-1" aria-labelledby="GenerateInvoiceLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="GenerateInvoiceLabel">Destination Setting</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Destination Number</label>
+                        <input type="text" class="form-control" id="des_invoice" disabled>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Start Date</label>
+
+                        <div class="input-group date">
+                            <input id="des_startdate" type="text" class="form-control">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-th"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">End Date</label>
+
+                        <div class="input-group date">
+                            <input id="des_enddate" type="text" class="form-control">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-th"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="gen_invoice" class="btn btn-primary">Generate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ClientInvoice" tabindex="-1" aria-labelledby="ClientInvoiceLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ClientInvoiceLabel">Client Invoice</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Client Name</label>
+                        <input type="text" class="form-control" id="cli_name" disabled>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Start Date</label>
+
+                        <div class="input-group date">
+                            <input id="cli_startdate" type="text" class="form-control">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-th"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">End Date</label>
+
+                        <div class="input-group date">
+                            <input id="cli_enddate" type="text" class="form-control">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-th"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="client_invoice" class="btn btn-primary">Generate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-lg fade" id="DestinationSettings" tabindex="-1" aria-labelledby="DestinationSettingsLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DestinationSettingsLabel">Destination Setting</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Destination Name</label>
+                        <input type="text" class="form-control" id="selected_desname" disabled>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Monthly Fees</label>
+                        <input type="checkbox" id="monthly_fee" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Charges Per Call</label>
+                        <input type="checkbox" id="charge_pc" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Charges Per Min</label>
+                        <input type="checkbox" id="charge_pm" data-toggle="toggle" data-size="mini">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Call Price (Per call)</label>
+                        <input type="text" class="form-control" id="des_ppc">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Forward Room Number</label>
+                        <input type="text" value="0" class="form-control" id="forward_des" disabled>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Total Seconds</label>
+                        <input type="text" value="0" class="form-control" id="forward_seconds" disabled>
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Forward Number</label>
+                        <input type="text" placeholder="Include Country Code" class="form-control" id="forward_number">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Forward Destination Cost (Per minute)</label>
+                        <input type="text" value="0" class="form-control" id="forward_cost">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Call Price (Per minute)</label>
+                        <input type="text" class="form-control" id="des_ppm">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Free Calls</label>
+                        <input type="text" class="form-control" id="des_fc">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Free Mins</label>
+                        <input type="text" class="form-control" id="des_fm">
+                    </div>
+
+                    <div class="mb-12">
+                        <label for="recipient-name" class="col-form-label col-6">Monthly Fees</label>
+                        <input type="text" class="form-control" id="monhtly_fees">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="des_settings" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="assign_destinantion" tabindex="-1" aria-labelledby="assign_destinantionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assign_destinantionLabel">Assign Destination</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-12 linear_view">
+                        <label for="recipient-name" class="col-form-label col-6">Select Destination</label>
+                        <div class="form-group pull-right col-6">
+                            <div class="dropdown">
+                                <button class="btn linear_btn btn-secondary dropdown-toggle drop_btn" type="button" id="selected_destination" data-bs-toggle="dropdown" aria-expanded="false">
+                                Destinations
+                            </button>
+                                <div id="menu" class="dropdown-menu">
+                                    <form class="px-4 py-2">
+                                        <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                    </form>
+                                    <div class="des_menu" id="menuItems1">
+                                    </div>
+                                    <div id="empty" class="dropdown-header empty">No data found</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-12 linear_view">
+                        <label for="recipient-name" class="col-form-label col-6">Select Customer</label>
+                        <div class="form-group pull-right col-6">
+                            <div class="dropdown">
+                                <button class="btn linear_btn btn-secondary dropdown-toggle drop_btn1" type="button" id="selected_customer" data-bs-toggle="dropdown" aria-expanded="false">
+                                Customers
+                            </button>
+                                <div id="menu" class="dropdown-menu">
+                                    <form class="px-4 py-2">
+                                        <input type="search" class="form-control cus_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                    </form>
+                                    <div class="cus_menu">
+                                        {% if customers == 'nothing' %}
+
+                                        <input type="button" class="dropdown-item mysearch_item2" value="EMPTY"> {% else %} {% for customer in customers %}
+                                        <input type="button" class="dropdown-item mysearch_item" value="{{customer.name}}"> {% endfor %} {% endif %}
+                                    </div>
+                                    <div id="empty1" class="dropdown-header empty">No data found</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-12 linear_view">
+                        <label for="recipient-name" class="col-form-label col-6">Destination Name</label>
+                        <input type="text" class="form-control" id="destination_name" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="assign_destination" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="{% static '/images/dashboard/logo.png' %}" alt="">
+                <span class="d-none d-lg-block">Admin Panel</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            {% if request.user.is_staff %}
+                            <h6 id="user_name">{{request.user}}</h6>
+                            {% else %}
+                            <h6 id="user_name">{{client.name}}</h6>
+                            {% endif %}
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'form_logout' %}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                    <i class="bi bi-grid"></i>
+                    <span>Admin</span>
+                </a>
+            </li>
+
+            <!-- <li class="nav-heading">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/">
+                    <i class="bi bi-person"></i>
+                    <span>Home</span>
+                </a>
+            </li> -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'login_asuser' %}">
+                    <i class="bi bi-person-fill"></i>
+                    <span>Change User</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'setup_wizard' %}">
+                    <i class="bi bi-database"></i>
+                    <span>Setup Wizard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'form_logout' %}">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Profile</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item">Users</li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- End Page Title -->
+
+        <section class="section profile">
+            <div class="row">
+
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link active" data-bs-toggle="tab" data-bs-target="#general-settings">Customers</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#create-destination">Destinations</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#user_orders">Client Orders</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#agents">Agents</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#agent_records">Agent Records</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#ivr_records">IVR Records</button>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#diss_records">Records</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#forms_database">Form Database</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="select_btn nav-link" data-bs-toggle="tab" data-bs-target="#gateways">Gateways</button>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content pt-2">
+
+                                <div class="tab-pane fade show active general_settings pt-3" id="general-settings">
+
+                                    <div class="form-group pull-right col-4">
+                                        <input type="text" class="customer_search form-control" placeholder="Search for Customers">
+                                    </div>
+
+                                    <span class="customer_results my_counter pull-right"></span>
+
+                                    <table class="table table-hover table-bordered customer_results">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1 col-xs-1">Name</th>
+                                                <th class="col-md-1 col-xs-1">Invoice</th>
+                                                <th class="col-md-1 col-xs-1">Email</th>
+                                                <th class="col-md-1 col-xs-1">invoice Email</th>
+                                                <th class="col-md-1 col-xs-1">Street</th>
+                                                <th class="col-md-1 col-xs-1">Zip Code</th>
+                                                <th class="col-md-1 col-xs-1">Place</th>
+                                                <th class="col-md-1 col-xs-1">Tax Number</th>
+                                                <th class="col-md-1 col-xs-1">Date Created</th>
+                                                <th class="col-md-1 col-xs-1">Settings</th>
+                                                <th class="col-md-1 col-xs-1">Edit</th>
+                                            </tr>
+                                            <tr class="warning no-result_customer">
+                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if customers == 'nothing' %}
+
+                                            <tr>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                            </tr>
+
+                                            {% else %} {% for customer in customers %}
+                                            <tr>
+                                                <td>{{customer.name}}</td>
+                                                <td id="{{customer.name}}" onclick="c_invoice(this.id)">Generate</td>
+                                                <td>{{customer.email}}</td>
+                                                <td>{{customer.invoice_email}}</td>
+                                                <td>{{customer.street}}</td>
+                                                <td>{{customer.zip_code}}</td>
+                                                <td>{{customer.place}}</td>
+                                                <td>{{customer.tax_num}}</td>
+                                                <td>{{customer.date_created}}</td>
+                                                <td><a data-bs-toggle="modal" id="{{customer.name}}" data-bs-target="#customersettings" onclick="user_settings(this.id);" class="customer_settings">Settings</a></td>
+                                                <td><a data-bs-toggle="modal" id="{{customer.name}}-edit" data-bs-target="#editsettings" onclick="edit_user(this.id);" class="customer_settings">Edit</a></td>
+                                            </tr>
+                                            {% endfor %} {% endif %}
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="create-destination">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-12">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="destinations_search form-control" placeholder="Search for Clients">
+                                        </div>
+
+                                        <div class="form-group pull-right col-6">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle drop_btn" type="button" id="dropdown_coins" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Destinations
+                                                </button>
+                                                <div id="menu" class="dropdown-menu">
+                                                    <form class="px-4 py-2">
+                                                        <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                                    </form>
+                                                    <div class="des_menu" id="menuItems">
+                                                        {% if destinations == 'nothing' %}
+
+                                                        <input type="button" class="dropdown-item mysearch_item" value="EMPTY"> {% else %} {% endif %}
+                                                    </div>
+                                                    <div id="empty" class="dropdown-header empty">No data found</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <span class="destinations_counter my_counter pull-right"></span>
+
+                                        <table id="records_table" class="table table-hover table-bordered destinations_results">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-1 col-xs-1">Client</th>
+                                                    <th class="col-md-1 col-xs-1">Invoice</th>
+                                                    <th class="col-md-2 col-xs-2">Destination Name</th>
+                                                    <th class="col-md-2 col-xs-2">Destination Number</th>
+                                                    <th class="col-md-2 col-xs-2">Settings</th>
+                                                    <th class="col-md-2 col-xs-2">Date Created</th>
+                                                </tr>
+                                                <tr class="warning destinations_noresult">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if destinations == 'nothing' %}
+
+                                                <tr>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                </tr>
+
+                                                {% else %} {% for destination in destinations %}
+                                                <tr>
+
+                                                    <td>
+                                                        {% for user in destination.user.all %} {{ user.name }} {% endfor %}
+                                                    </td>
+                                                    <td id="49{{destination.number}}" onclick="generate_invoice(this.id)">Generate</td>
+                                                    <td>{{destination.name}}</td>
+                                                    <td>{{destination.number}}</td>
+                                                    <td id="{{destination.name}}" onclick="(function(btnId){$('#selected_desname').val(btnId);$('#DestinationSettings').modal('show');getdes_settings();})(this.id)">Settings</td>
+                                                    <td>{{destination.date_created}}</td>
+                                                </tr>
+                                                {% endfor %} {% endif %}
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" data-bs-toggle="modal" data-bs-target="#assign_destinantion" class="btn btn-primary">Assign new</button>
+                                    </div>
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade userorders pt-3" id="user_orders">
+
+                                    <div class="form-group pull-right col-4">
+                                        <input type="text" class="orders_search form-control" placeholder="Search for Orders">
+                                    </div>
+
+                                    <span class="orders_counter my_counter pull-right"></span>
+
+                                    <table class="table table-hover table-bordered orders_results">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1 col-xs-1">Product Name</th>
+                                                <th class="col-md-1 col-xs-1">Destination</th>
+                                                <th class="col-md-1 col-xs-1">Client</th>
+                                                <th class="col-md-1 col-xs-1">Shipping</th>
+                                                <th class="col-md-1 col-xs-1">Sales Price</th>
+                                                <th class="col-md-1 col-xs-1">Purchase Price</th>
+                                                <th class="col-md-1 col-xs-1">Tax</th>
+                                                <th class="col-md-1 col-xs-1">Other</th>
+                                                <th class="col-md-1 col-xs-1">Order ID</th>
+                                                <th class="col-md-1 col-xs-1">Status</th>
+                                                <th class="col-md-1 col-xs-1">Date Ordered</th>
+                                            </tr>
+                                            <tr class="warning orders_noresult">
+                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if orders == 'nothing' %}
+
+                                            <tr>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                            </tr>
+
+                                            {% else %} {% for order in orders %}
+                                            <tr>
+                                                {% for product in order.product.all %}
+                                                <td>{{product.name}}</td>
+
+                                                {% for des in product.destination.all %}
+                                                <td>{{des.name}}</td>
+                                                {% endfor %} {% for cli in product.user.all %}
+                                                <td>{{cli.name}}</td>
+                                                {% endfor %}
+
+                                                <td>{{product.shipping}}</td>
+
+                                                <td>{{product.sales_price}}</td>
+
+                                                <td>{{product.purchase_price}}</td>
+
+                                                <td>{{product.tax}}</td>
+
+                                                <td>{{product.other}}</td>
+
+                                                {% endfor %}
+
+                                                <td>{{order.order_id}}</td>
+                                                <td>{{order.status}}</td>
+                                                <td>{{order.date_created}}</td>
+
+                                            </tr>
+                                            {% endfor %} {% endif %}
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="agents">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="agents_search form-control" placeholder="What you looking for?">
+                                        </div>
+
+                                        <span class="agents_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered contact_results agents_results">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-2 col-xs-2">Name</th>
+                                                    <th class="col-md-2 col-xs-2">Pin</th>
+                                                    <th class="col-md-2 col-xs-2">Street</th>
+                                                    <th class="col-md-2 col-xs-2">ZipCode</th>
+                                                    <th class="col-md-2 col-xs-2">City</th>
+                                                    <th class="col-md-2 col-xs-2">Email</th>
+                                                    <th class="col-md-2 col-xs-2">Tax Number</th>
+                                                    <th class="col-md-2 col-xs-2">Sales Tax</th>
+                                                    <th class="col-md-2 col-xs-2">Account Name</th>
+                                                    <th class="col-md-2 col-xs-2">Bank name</th>
+                                                    <th class="col-md-2 col-xs-2">IBAN</th>
+                                                    <th class="col-md-2 col-xs-2">BIC</th>
+                                                    <th class="col-md-2 col-xs-2">Country Code</th>
+                                                    <th class="col-md-2 col-xs-2">Phone</th>
+                                                    <th class="col-md-2 col-xs-2">Passive Mins</th>
+                                                    <th class="col-md-2 col-xs-2">Active Mins</th>
+                                                    <th class="col-md-2 col-xs-2">Status</th>
+                                                    <th class="col-md-2 col-xs-2">Edit</th>
+                                                    <th class="col-md-2 col-xs-2">Delete</th>
+                                                </tr>
+                                                <tr class="warning agents_noresult">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if agents == 'nothing' %}
+
+                                                <tr>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                </tr>
+
+                                                {% else %} {% for agent in agents %}
+                                                <tr>
+                                                    <td>{{agent.name}}</td>
+                                                    <td>{{agent.pin}}</td>
+                                                    <td>{{agent.street}}</td>
+                                                    <td>{{agent.zip_code}}</td>
+                                                    <td>{{agent.city}}</td>
+                                                    <td>{{agent.email}}</td>
+                                                    <td>{{agent.tax_num}}</td>
+                                                    <td>{{agent.sales_tax}}</td>
+                                                    <td>{{agent.account_name}}</td>
+                                                    <td>{{agent.bank_name}}</td>
+                                                    <td>{{agent.iban}}</td>
+                                                    <td>{{agent.bic}}</td>
+                                                    <td>{{agent.country_code}}</td>
+                                                    <td>{{agent.phone}}</td>
+                                                    <td>{{agent.passive_mins}}</td>
+                                                    <td>{{agent.active_mins}}</td>
+                                                    <td>{{agent.status}}</td>
+                                                    <td id="{{agent.name}}" onclick="get_agent(this.id)">Edit</td>
+                                                    <td id="{{agent.name}}" onclick="del_agent(this.id)">Delete</td>
+
+                                                </tr>
+                                                {% endfor %} {% endif %}
+
+                                            </tbody>
+                                        </table>
+
+                                        <div class="text-center">
+                                            <button type="submit" data-bs-toggle="modal" data-bs-target="#create_agent" class="btn btn-primary">Create new</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="agent_records">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-12">
+
+                                        <div class="form-group pull-right agentrs">
+                                            <div class="agr_dropdown dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle agr_drop_btn" type="button" style="margin: 0;" id="agents_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Agents
+                                                </button>
+                                                <div id="menu" class="dropdown-menu">
+                                                    <form class="px-4 py-2">
+                                                        <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                                    </form>
+                                                    <div class="agr_des_menu" id="menuItems">
+
+                                                        {% for agent in agents %}
+
+                                                            <input type="button" id="{{agent.country_code}}{{agent.phone}}" class="dropdown-item agr_search_item" value="{{agent.name}}">
+
+                                                        {% endfor %}
+                                                    
+                                                    </div>
+                                                    <div id="empty" class="dropdown-header empty">No data found</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="agr_dropdown dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle agrm_drop_btn" type="button" id="dropdown_coins" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Room (All)
+                                                </button>
+                                                <div id="menu" class="dropdown-menu">
+                                                    <form class="px-4 py-2">
+                                                        <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                                    </form>
+                                                    <div class="agrm_des_menu" id="menuItems">
+
+                                                        {% for room in rooms %}
+
+                                                            <input type="button" class="dropdown-item agrm_search_item" id="{{room|get_item:1}}" value="{{room|get_item:0}}">
+
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div id="empty" class="dropdown-header empty">No data found</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mb-12">
+                                            <label for="recipient-name" class="col-form-label col-6">Start Date</label>
+                    
+                                            <div class="input-group date">
+                                                <input id="agent_records_startdate" type="text" class="form-control">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="mb-12" style="padding-bottom: 40px;">
+                                            <label for="recipient-name" class="col-form-label col-6">End Date</label>
+                    
+                                            <div class="input-group date">
+                                                <input id="agent_records_enddate" type="text" class="form-control">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <table id="agent_records_table" class="table table-hover table-bordered destinations_results">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-1 col-xs-1">Agent</th>
+                                                    <th class="col-md-2 col-xs-2">Room</th>
+                                                    <th class="col-md-1 col-xs-1">Application</th>
+                                                    <th class="col-md-2 col-xs-2">Passive Mins</th>
+                                                    <th class="col-md-2 col-xs-2">Active Mins</th>
+                                                </tr>
+                                                <tr class="warning destinations_noresult">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="text-center">
+                                        <div id="search_agent" class="btn btn-primary">Search</div>
+                                    </div>
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="ivr_records">
+
+                                    <!-- Settings Form -->
+                                    <div class="mb-12">
+                                        <label for="recipient-name" class="col-form-label col-6">Start Date</label>
+                
+                                        <div class="input-group date">
+                                            <input id="ivr_startdate" type="text" class="form-control">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-th"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                
+                                    <div class="mb-12">
+                                        <label for="recipient-name" class="col-form-label col-6">End Date</label>
+                
+                                        <div class="input-group date">
+                                            <input id="ivr_enddate" type="text" class="form-control">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-th"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-12" style="padding-bottom: 40px;">
+                                        <label for="recipient-name" class="col-form-label col-6">IVR Number</label>
+                                        <input type="text" class="form-control" id="ivr_number">
+                                    </div>
+
+                                    <table id="ivr_records_table" class="table table-hover table-bordered destinations_results">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-2 col-xs-2">Start Date</th>
+                                                <th class="col-md-1 col-xs-1">End Date</th>
+                                                <th class="col-md-1 col-xs-1">IVR Extension</th>
+                                                <th class="col-md-2 col-xs-2">IVR Zeit</th>
+                                                <th class="col-md-2 col-xs-2">Gesamtzeit</th>
+                                                <th class="col-md-2 col-xs-2">IVR Zeit Dezimal</th>
+                                            </tr>
+                                            <tr class="warning destinations_noresult">
+                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+
+                                    <div class="text-center">
+                                        <div id="get_ivr_records" class="btn btn-primary">Search</div>
+                                    </div>
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="gateways">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="gateways_search form-control" placeholder="What you looking for?">
+                                        </div>
+
+                                        <span class="gateways_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered gateways_results">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-2 col-xs-2">Name</th>
+                                                    <th class="col-md-2 col-xs-2">Start</th>
+                                                    <th class="col-md-2 col-xs-2">End</th>
+                                                    <th class="col-md-2 col-xs-2">Date Created</th>
+                                                </tr>
+                                                <tr class="warning gateways_noresult">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if gateways == 'nothing' %}
+
+                                                <tr>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                </tr>
+
+                                                {% else %} 
+                                                
+                                                    {% for gateway in gateways %}
+                                                        <tr>
+                                                            <td>{{gateway.sip_provider}}</td>
+                                                            <td>{{gateway.start}}</td>
+                                                            <td>{{gateway.end}}</td>
+                                                            <td>{{gateway.date_created}}</td>
+                                                        </tr>
+
+                                                    {% endfor %} 
+                                                {% endif %}
+
+                                            </tbody>
+                                        </table>
+
+                                        <div class="text-center">
+                                            <button type="submit" data-bs-toggle="modal" data-bs-target="#create_gateway" class="btn btn-primary">Create new</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="diss_records">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="records_search form-control" placeholder="What you looking for?">
+
+                                        </div>
+
+                                        <span class="records_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered contact_results records_results">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-2 col-xs-2">Name</th>
+                                                    <th class="col-md-2 col-xs-2">Info</th>
+                                                    <th class="col-md-2 col-xs-2">Removing Time</th>
+                                                    <th class="col-md-2 col-xs-2">Client</th>
+                                                    <th class="col-md-2 col-xs-2">Destination</th>
+                                                </tr>
+                                                <tr class="warning records_noresult">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if records == 'nothing' %}
+
+                                                <tr>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                </tr>
+
+                                                {% else %} {% for record in records %}
+                                                <tr>
+                                                    <td>{{record.name}}</td>
+                                                    <td>{{record.info}}</td>
+                                                    <td>{{record.disappearing_time}}</td>
+
+                                                    {% for my_des in record.destination.all %} {% for my_user in my_des.user.all %}
+                                                    <td>{{my_user.name}}</td>
+                                                    {% endfor %}
+
+                                                    <td>{{my_des.name}}</td>
+                                                    {% endfor %}
+
+                                                </tr>
+                                                {% endfor %} {% endif %}
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade general_settings pt-3" id="forms_database">
+
+                                    <div class="form-group pull-right col-4">
+                                        <input type="text" class="form_search form-control" placeholder="Search for Customers">
+                                    </div>
+
+                                    <span class="form_counter my_counter pull-right"></span>
+
+                                    <table class="table table-hover table-bordered form_results">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1 col-xs-1">Data Field</th>
+                                                <th class="col-md-1 col-xs-1">Download CSV</th>
+                                            </tr>
+                                            <tr class="warning no-result_form">
+                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if forms_data == 'nothing' %}
+
+                                                <tr>
+                                                    <td>Empty</td>
+                                                    <td>Empty</td>
+                                                </tr>
+
+                                            {% else %} 
+                                                {% for fdata in forms_data %}
+                                                    <tr>
+                                                        <td>{{fdata.form_name}}</td>
+                                                        <td id="{{fdata.form_name}}" onclick="convert_csv(this.id)">Download</td>
+                                                    </tr>
+                                                {% endfor %} 
+                                            {% endif %}
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                            <!-- End Bordered Tabs -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        $('.input-group.date').datepicker({
+            clearBtn: true,
+            orientation: "auto left",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+
+    <script src="{% static '/js/dashboard/overlay.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/mainn.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/admin.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/toggle.min.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/apexcharts.min.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/chart.js' %}"></script>
+
+</body>
+
+</html>

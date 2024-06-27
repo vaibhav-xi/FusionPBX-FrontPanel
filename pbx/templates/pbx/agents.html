@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/pbx/home.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/pbx/scrollbar.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/pbx/overlay.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/pbx/dropdown.css' %}">
+
+    <title>Agents</title>
+
+    <meta name="description" content="">
+    <!-- responsive tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .spacer {
+            padding: 50px;
+        }
+        
+        .navitems {
+            color: #fff;
+        }
+        
+        .navitems:hover {
+            color: #fff;
+        }
+        
+        .navbar-expand-lg .navbar-collapse {
+            position: absolute;
+            right: 30px;
+        }
+        
+        .navbar-options {
+            float: left;
+            position: absolute;
+            padding-left: 150px;
+            color: #fff;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        <div id="spinner_text">Fetching Agents...</div>
+    </div>
+
+    <div class="modal" id="AgentModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a new Agent</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="fontColorPicker">Full Name:</label>
+                        <input type="text" class="form-control" id="agent_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="backgroundColorPicker">Agent Number:</label>
+                        <input type="text" class="form-control" id="agent_number">
+                    </div>
+                    <div class="form-group">
+                        <label for="backgroundColorPicker">Agent Pin:</label>
+                        <input type="text" class="form-control" id="agent_pin">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveagent">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Agent Details</a>
+
+            <a class="navbar-options" href="{% url 'home' %}">Home</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="navitems" data-bs-toggle="modal" data-bs-target="#AgentModal"> ADD NEW AGENT </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="spacer"></div>
+
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Agent Number</th>
+                <th scope="col">Agent Pin</th>
+            </tr>
+        </thead>
+        <tbody id="AgentsTable">
+        </tbody>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js" integrity="sha512-xbQU0+iHqhVt7VIXi6vBJKPh3IQBF5B84sSHdjKiSccyX/1ZI7Vnkt2/8y8uruj63/DVmCxfUNohPNruthTEQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{% static '/js/pbx/overlay.js' %}"></script>
+    <script src="{% static '/js/pbx/agents.js' %}"></script>
+</body>
+
+</html>

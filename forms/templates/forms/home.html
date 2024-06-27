@@ -1,0 +1,1003 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Admin Panel</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static '/images/dashboard/favicon.png' %}" rel="icon">
+    <link href="{% static '/images/dashboard/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/stylee.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/database.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/spinner.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Large devices (desktops, 992px and up) */
+        
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+            .editContainer .card-columns {
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                column-count: 1;
+            }
+        }
+        /* Extra large devices (large desktops, 1200px and up) */
+        
+        @media (min-width: 1200px) {
+            .card-columns {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
+            .editContainer .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+        }
+        
+        .card-columns1 {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+        
+        .card-columns2 {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+        }
+        
+        .destination-select {
+            border: none !important;
+        }
+        
+        .mb-12.linear_view {
+            display: flex;
+        }
+        
+        .btn-group.btn-toggle {
+            display: flex;
+        }
+        
+        .switch_btn {
+            font-size: 12px;
+            padding: 6px;
+        }
+        
+        .destination_cards {
+            display: block;
+        }
+
+        .destination_chart {
+            display: block;
+        }
+        
+        .products_card {
+            display: none;
+        }
+        
+        .product_chart {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        <div id="spinner_text">Loading...</div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center">
+                <img src="{% static '/images/dashboard/icon.png' %}" alt="">
+                <span class="d-none d-lg-block">Admin Panel</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle ">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li>
+                <!-- End Search Icon-->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            {% if request.user.is_staff %}
+                            <h6 id="user_name">{{request.user}}</h6>
+                            {% else %}
+                            <h6>Not Staff</h6>
+                            {% endif %}
+                            <span>Admin</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{%url 'form_logout'%}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <div class="dropdown bootstrap-select show-tick form-control destination-select">
+
+                    <select name="destination-select" id="destination-select" class="form-control selectpicker show-tick destination-select">
+                        {% if pk == "disable" %}
+
+                        <option value="null"> Select </option>
+
+                        {% endif %}
+
+                        {% if total_destinations == 'nothing' %}
+                                                
+                        {% else %}
+
+                            {% if pk != "disable" %}
+                                <option value="{{pk}}">{{pk}}</option>
+                            {% endif %}
+
+                            {% for destination in total_destinations %}
+                                {% if pk != destination.name %}
+                                    <option value="{{ destination.name }}">{{ destination.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% endif %}
+
+                        <option value="all_destinations"> All Destinations </option>
+                        <option value="Products">Products</option>
+                    </select>
+                </div>
+            </li>
+            <!-- End Dashboard Nav -->
+
+            <li class="nav-heading">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'settings' %}">
+                    <i class="bi bi-person"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+            <!-- End Profile Page Nav -->
+
+            {% if form_fun %}
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'create_form' %}">
+                    <i class="bi bi-card-list"></i>
+                    <span>Forms</span>
+                </a>
+            </li>
+
+            {% endif %}
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{%url 'form_logout'%}">
+                    <i class="bi bi-card-list"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+
+    <main id="main" class="main">
+
+        {% if pk == 'all_destinations' %}
+
+            <input type="text" style="display: none;" value="all_destinations" id="my_des-number">
+            
+            <!-- <input type="text" style="display: none;" value="{{destination.call_price}}" id="call_price"> -->
+
+        {% else %}
+
+        {% for destination in destinations %}
+        
+        <input type="text" style="display: none;" value="{{destination.number}}" id="my_des-number">
+        
+        <input type="text" style="display: none;" value="{{destination.call_price}}" id="call_price">
+        
+        {% endfor %}
+
+        {% endif %}
+
+         
+        
+
+        {% if overlap == "yea" %}
+
+        <div class="overlay">
+            <div class="overlay-text">Please Select the Destination</div>
+        </div>
+
+        {% endif %}
+
+        <div class="modal fade" id="custom_range" tabindex="-1" aria-labelledby="custom_rangeLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="custom_rangeLabel">Custom Stats</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+    
+                        <div class="mb-12">
+                            <label for="recipient-name" class="col-form-label col-6">Start Date</label>
+    
+                            <div class="input-group date">
+                                <input id="stats_startdate" type="text" class="form-control">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </span>
+                            </div>
+                        </div>
+    
+                        <div class="mb-12">
+                            <label for="recipient-name" class="col-form-label col-6">End Date</label>
+    
+                            <div class="input-group date">
+                                <input id="stats_enddate" type="text" class="form-control">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </span>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="gen_stats" class="btn btn-primary">Generate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- End Page Title -->
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <!-- PRODUCT CARDS-->
+
+                        <!-- Sales Card -->
+                        <div class="products_card col-xxl-3 col-md-3">
+                            <div class="card info-card sales-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Money <span id="selected_filter">|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-currency-euro"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{total_money}}</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Sales Card -->
+
+                        <!-- Revenue Card -->
+                        <div class="products_card col-xxl-3 col-md-3">
+                            <div class="card info-card revenue-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Orders <span>|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-box-seam-fill"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{orders.count}}</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Revenue Card -->
+
+                        <!-- Customers Card -->
+                        <div class="products_card col-xxl-3 col-xl-3">
+
+                            <div class="card info-card customers-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Costs<span>|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-cash-stack"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{total_amount}}</h6>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Customers Card -->
+
+                        <!-- Customers Card -->
+                        <div class="products_card col-xxl-3 col-xl-3">
+
+                            <div class="card info-card customers-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Profit<span>|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-bank"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{total_profit}}</h6>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Customers Card -->
+
+                        <!-- END PRODUCT CARDS-->
+
+
+                        <!-- DESTINATION CARDS -->
+
+                        <!-- Calls Card -->
+                        <div class="destination_cards col-xxl-3 col-md-3">
+                            <div class="card info-card sales-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Calls <span id="selected_filter2">|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-phone"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6 id="tdes_calls">{{gc}}</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Calls Card -->
+
+                        <!-- Minutes Card -->
+                        <div class="destination_cards col-xxl-3 col-md-3">
+                            <div class="card info-card revenue-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Minutes <span>|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-box-seam-fill"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6 id="tdes_min">{{gm}}</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Minutes Card -->
+
+                        <!-- Call Average Card -->
+                        <div class="destination_cards col-xxl-3 col-xl-3">
+
+                            <div class="card info-card customers-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Call Average<span>|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-cash-stack"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6 id="tdes_average">{{ga}}</h6>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Call Average Card -->
+
+                        <!-- Total Costs Card -->
+                        <div class="destination_cards col-xxl-3 col-xl-3">
+
+                            <div class="card info-card customers-card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title selectedfilter">Total Costs<span>|</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-bank"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6 id="tdes_cost">{{gt}}</h6>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Total Costs Card -->
+
+                        <!-- END DESTINATION CARDS-->
+
+                        {% if pk == "disable" %} {% else %}
+
+                        <!-- Informations column -->
+                        {% if client.imp_info %}
+                        <div class="{% if client.diss_info %} col-lg-6 {% else %} col-lg-12 {% endif %}">
+
+                            <!-- Important Info -->
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Important Information <span id="selected_filter3">| {% if pk == "disable" %} Select a destination {% else %} {{pk}} {% endif %}</span> </h5>
+
+                                    <div class="activity">
+
+                                        <div class="row mb-3">
+                                            <div class="form-group">
+                                                <label for="welcome_text">Welcome Text</label>
+                                                <textarea class="form-control" id="welcome_text" rows="3" disabled>{{welcome_text}}</textarea>
+                                            </div>
+
+                                            <div class="spacerh"></div>
+
+                                            <div class="form-group">
+                                                <label for="important_text">Important Information</label>
+                                                <textarea class="form-control" id="important_text" rows="3" disabled>{{important_text}}</textarea>
+                                            </div>
+
+                                            <div style="margin-bottom:3px;"></div>
+
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Date Modified:</label>
+                                                <input type="text" value="{{general_date}}" class="form-control" id="importantinfo_date" disabled>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Important Activity -->
+                        </div>
+                        {% endif %} {% if client.diss_info %}
+                        <div class="{% if client.imp_info %} col-lg-6 {% else %} col-lg-12 {% endif %}">
+
+                            <!-- Disapperaing Info -->
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Disappearing Inforamtion <span id="selected_filter4">| {% if pk == "disable" %} Select a destination {% else %} {{pk}} {% endif %}</span> </h5>
+
+                                    <div class="activity">
+
+                                        <div class="mb-12 linear_view">
+                                            <label for="recipient-name" class="col-form-label col-6">Select Message</label>
+                                            <div class="form-group pull-right col-6">
+                                                <div class="dropdown">
+                                                    <button class="btn linear_btn btn-secondary dropdown-toggle drop_btn" type="button" id="selected_destination" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Messages
+                                                        </button>
+                                                    <div id="menu" class="dropdown-menu">
+                                                        <form class="px-4 py-2">
+                                                            <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                                        </form>
+                                                        <div class="des_menu" id="menuItems1">
+                                                            {% if messages == 'nothing' %}
+
+                                                            <input type="button" class="dropdown-item mysearch_item" value="EMPTY"> {% else %} {% for message in messages %}
+                                                            <input type="button" class="dropdown-item mysearch_item" id="{{message.name}}" value="{{message.name}}"> {% endfor %} {% endif %}
+                                                        </div>
+                                                        <div id="empty" class="dropdown-header empty">No data found</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Name:</label>
+                                            <input type="text" class="form-control" id="diss_name" disabled>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Time:</label>
+                                            <input type="text" class="form-control" id="diss_datetime" disabled>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="important_text">Message:</label>
+                                            <textarea class="form-control" id="diss_message" rows="3" disabled></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Disapperaing Activity -->
+                        </div>
+
+                        {% endif %} {% endif %}
+
+                        <!-- End of Informations columns -->
+
+                        <!-- Reports -->
+                        <div class="col-12">
+                            <div class="card">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Monthly</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Yearly</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Reports <span>| </span></h5>
+
+                                    <!-- Products Chart -->
+                                    <div class="product_chart" id="reportsChart"></div>
+
+                                    <!-- Destinations Chart -->
+                                    <div class="destination_chart" id="destinationChart"></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Reports -->
+
+                        <!-- Sales -->
+                        <!-- {% if client.sales %}
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+
+                                <div class="filter">
+                                    <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Today</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Month</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">This Year</a></li>
+                                        <li><a onclick="change_chart(this.innerHTML)" class="dropdown-item dropdownitem">Custom</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body user-details">
+                                    <h5 class="card-title">Sales <span>| </span></h5>
+
+                                    <table class="table table-borderless datatable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Destination</th>
+                                                <th scope="col">Shipping</th>
+                                                <th scope="col">Purchase Price</th>
+                                                <th scope="col">Salse Price</th>
+                                                <th scope="col">Tax</th>
+                                                <th scope="col">Others</th>
+                                                <th scope="col">Order ID</th>
+                                                <th scope="col">Date Ordered</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for order in orders %}
+                                            <tr>
+
+                                                {% for product in order.product.all %}
+                                                <td>{{product.name}}</td>
+
+                                                {% for des in product.destination.all %}
+                                                <td>{{des.name}}</td>
+                                                {% endfor %}
+
+                                                <td>{{product.shipping}}</td>
+
+                                                <td>{{product.purchase_price}}</td>
+
+                                                <td>{{product.sales_price}}</td>
+
+                                                <td>{{product.tax}}</td>
+
+                                                <td>{{product.other}}</td>
+
+                                                {% endfor %}
+
+                                                <td>{{order.order_id}}</td>
+                                                <td>{{order.date_created}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endif %} -->
+                        <!-- End Recent Sales -->
+
+                    </div>
+                </div>
+                <!-- End Left side columns -->
+
+            </div>
+
+            </div>
+
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+    <a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        /*$('.btn-toggle').click(function() {
+            $(this).find('.btn').toggleClass('active');
+
+            if ($(this).find('.btn-primary').length > 0) {
+                $(this).find('.btn').toggleClass('btn-primary');
+            }
+
+            $(this).find('.btn').toggleClass('btn-default');
+
+            switchDisplay();
+
+        });*/
+        
+        var myDestinations = {{tdes|safe}};
+
+        option_select = document.getElementById('destination-select').options;
+
+        if (option_select.length >= 2) {
+            console.log("VALUES: ", option_select[0].value, option_select[1].value);
+            // console.log("VALUES: ", typeof option_select[0].value, typeof option_select[1].value);
+
+            console.log(option_select[0].value === 'null' && option_select[1].value != null);
+
+            if (option_select[0].value === null && option_select[1].value != null) {
+                console.log("IN THE LOOP");
+                window.location.href = `/home/${option_select[1].value}`;
+            }
+        }
+        
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        $('.input-group.date').datepicker({
+            clearBtn: true,
+            orientation: "auto left",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+
+    <script src="{% static '/js/dashboard/spinner.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/home.js' %}"></script>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static '/js/dashboard/apexcharts.min.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/simple-datatables.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/tinymce/tinymce.min.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/chart.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static '/js/dashboard/mainn.js' %}"></script>
+
+    <script>
+        function replaceTextareaWithDiv(textareaId) {
+            // Step 1: Get the textarea element by ID
+            const textarea = document.getElementById(textareaId);
+
+            // Step 2: Extract the content from the textarea
+            const rawHTML = textarea.value;
+
+            // Step 3: Create a new div element
+            const newDiv = document.createElement('div');
+
+            const hrTag = document.createElement('hr');
+            const hrTag2 = document.createElement('hr');
+
+            // Step 4: Set the innerHTML of the new div with the content from the textarea
+            newDiv.innerHTML = rawHTML;
+
+            // newDiv.appendChild(hrTag);
+
+            const firstChild = newDiv.firstChild;
+            newDiv.insertBefore(hrTag, firstChild);
+
+            // Step 5: Replace the textarea with the new div
+            textarea.parentNode.replaceChild(newDiv, textarea);
+
+            // newDiv.style.border = 'black 0.1px solid';
+            // newDiv.style.borderRadius = '5px';
+
+            newDiv.appendChild(hrTag2);
+
+            const anchorElements = newDiv.querySelectorAll('a');
+            anchorElements.forEach((anchor) => {
+                anchor.setAttribute('target', '_blank');
+            });
+        }
+
+        function check_existance(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                replaceTextareaWithDiv(elementId);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            check_existance("welcome_text");
+            check_existance("important_text");
+            check_existance("diss_message");
+        });
+    </script>
+
+</body>
+
+</html>

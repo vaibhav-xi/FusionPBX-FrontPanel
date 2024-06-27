@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="66px" height="24px" viewBox="0 0 66 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>btn-gradient</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#CECECE" offset="0%"></stop>
+            <stop stop-color="#797979" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="button" transform="translate(-1184.000000, -322.000000)">
+            <g id="controls-button" transform="translate(281.000000, 140.000000)">
+                <g id="btn-group" transform="translate(695.000000, 151.000000)">
+                    <g id="Group-3" transform="translate(0.000000, 22.000000)">
+                        <g id="btn-gradient" transform="translate(208.000000, 9.000000)">
+                            <rect id="Rectangle-516" fill="url(#linearGradient-1)" x="0" y="0" width="66" height="24" rx="2"></rect>
+                            <rect id="Rectangle-660" fill="#FFFFFF" x="17" y="10" width="32" height="4"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

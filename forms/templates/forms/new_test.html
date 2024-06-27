@@ -1,0 +1,275 @@
+<!doctype html>
+      <html>
+        <head>
+        <title>Form</title>
+        <!--[if !mso]>-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--<![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>        
+        <style>
+          .hr-form-builder {
+            opacity: 1;
+            background-color: transparent;
+          }         
+          div[id^="date_input_"] input,
+          div[id^="datetime_input_"] input {
+              border-top-right-radius: 0 !important;
+              border-bottom-right-radius: 0 !important;
+          }
+          .dz-button {
+            background: none;
+            border: 0;
+          }
+          .dropzone {
+            min-height: auto;
+            padding: 0;
+            margin: 0;
+          }
+          .dropzone .dz-message {
+            margin: 0;
+          }
+        </style>
+        <style type="text/css">
+            @media only screen and (min-width:751px) {
+              .column-per-20 {
+                  width: 19.4% !important;
+                  max-width: 19.4%;
+              }
+              .column-per-25 {
+                  width: 24.4% !important;
+                  max-width: 24.4%;
+              }
+              .column-per-33 {
+                  width: 32.8% !important;
+                  max-width: 32.8%;
+              }
+              .column-per-50 {
+                  width: 49.4% !important;
+                  max-width: 49.4%;
+              }
+              .column-per-66 {
+                  width: 66.3% !important;
+                  max-width: 66.3%;
+              }
+              .column-per-100 {
+                  width: 100% !important;
+                  max-width: 100%;
+              }
+            }
+        </style>
+</head>
+            <body class="d-flex min-vh-100" style="align-items: flex-start;font-family: 'Helvetica Neue', Helvetica, sans-serif;font-size: 16px;background: #f5f5f5;padding: 15px;">
+              <form method="post" action="" class="container-fluid user-select-auto mx-auto" style="background: #ffffff;max-width: 600px;padding: 15px;border-radius: 8px;border: solid 1px #ced4da">
+
+    <div style="display:none">
+      <input type="text" class="form-control" id="set_receiver" name="receiver_email" value="" style="display:none;">
+    </div><div class="container-fluid p-0">
+<div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    background-color: ;
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Phone number</span>
+            </label><input type="text" class="form-control"
+        name="input-1cae7fae"
+        autocomplete="off"
+        placeholder="Placeholder text"
+        id="phone_number"
+        value="{{phone_number}}"
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    background-color: ;
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Input label</span>
+            </label><input type="text" class="form-control"
+        name="input-f7b01fa5"
+        autocomplete="off"
+        placeholder="Placeholder text"
+        id=""
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div></div><div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    background-color: ;
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Input label</span>
+            </label><input type="text" class="form-control"
+        name="input-442b3d0b"
+        autocomplete="off"
+        placeholder="Placeholder text"
+        id=""
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    background-color: ;
+    border-radius: 0px;min-height: auto;">
+    <label class="" style="color: #000000;font-size: 14px">
+        <span class="d-inline-block">Textarea label</span></label>
+        <textarea class="form-control"
+            name="textarea-7e4dcd7f"
+            id ="" 
+            placeholder="HOI"
+            style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px;"></textarea>
+        </div></div></div><div class="clearfix"></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    background-color: ;
+    border-radius: 0px;min-height: auto;"><center><table cellpadding="0" cellspacing="0" style="margin:0;border-collapse:collapse;" align="center">
+          <tr>
+            <td style="vertical-align: middle"><button type="submit" style="padding:0 15px;text-decoration:none;display:block;text-align:center;border:0;color:#FFFFFF;font-family: 'Helvetica Neue', Helvetica, sans-serif;font-size: 16px;height: 30px; line-height: 30px;background-color: #0143a3;width:auto;">
+        Button
+      </button></td>
+          </tr>
+        </table></center><div style="clear: both"></div></div>
+</form>            
+            <script type="text/javascript">
+            Dropzone.autoDiscover = false;
+            $(document).ready(function(){
+                $(function () {
+                  $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+                    icons: {
+                        time: 'far fa-clock',
+                        date: 'far fa-calendar',
+                        up: 'fas fa-arrow-up',
+                        down: 'fas fa-arrow-down',
+                        previous: 'fas fa-chevron-left',
+                        next: 'fas fa-chevron-right',
+                        today: 'far fa-calendar-check-o',
+                        clear: 'far fa-trash',
+                        close: 'far fa-times'
+                    } });
+
+                    $('div[id^="datetime_input_"]').datetimepicker({
+                      format: "YYYY-MM-DD HH:mm",
+                      focusOnShow: false,
+                    });
+
+                    $('div[id^="date_input_"]').datetimepicker({                        
+                      format: "YYYY-MM-DD",
+                      focusOnShow: false,
+                    });
+
+                    $('div[id^="dropzone_"]').each(function() {   
+                      console.log($(this).data('max-file-size'))                   
+                      $(this).dropzone({
+                        addRemoveLinks: true,
+                        url: $(this).data('upload-url'),
+                        paramName: $(this).data('param-name'),
+                        dictDefaultMessage: $(this).data('message'),
+                        acceptedFiles: $(this).data('accepted-files'),
+                        maxFilesize: $(this).data('max-file-size')
+                      });
+                    });
+                });
+            });
+            </script>
+
+            <script>
+
+
+              var i = 0;
+
+              var jsonString = "{{ data | safe }}";
+              var inputElement = document.getElementById('set_receiver');
+
+              // Replace double quotes with single quotes
+              var singleQuotedString = jsonString.replace(/'/g, '"');
+
+              // Parse the modified JSON string
+              var jsonData = JSON.parse(singleQuotedString);
+
+              var selectElement = document.getElementById('my_emails');
+              // selectElement.name = 'send_email';
+
+              function replaceTextareaWithDiv(textareaId) {
+                const textarea = document.getElementById(textareaId);
+        
+                const rawHTML = textarea.getAttribute('placeholder');
+        
+                const newDiv = document.createElement('div');
+        
+                newDiv.innerHTML = rawHTML;
+        
+                textarea.parentNode.replaceChild(newDiv, textarea);
+
+                const anchorElements = newDiv.querySelectorAll('a');
+                anchorElements.forEach((anchor) => {
+                  anchor.setAttribute('target', '_blank');
+                });
+              }
+
+              // document.getElementById('my_emails').name = 'send_email'
+              // document.getElementById('disappearing_info').name = 'disappearing_info'
+              // document.getElementById('important_info').name = 'important_info'
+              // document.getElementById('welcome_text').name = 'welcome_text'
+
+              // Function to safely set the name attribute of an element by ID
+              function setElementNameById(elementId, name) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                  element.name = name;
+
+                  if (elementId != 'my_emails') {
+                    replaceTextareaWithDiv(elementId);
+                  }
+                }
+              }
+
+              // Usage example
+              setElementNameById('my_emails', 'send_email');
+              setElementNameById('disappearing_info', 'disappearing_info');
+              setElementNameById('important_info', 'important_info');
+              setElementNameById('welcome_text', 'welcome_text');
+
+              for (var key in jsonData) {
+                  var option = document.createElement('option');
+                  option.value = key;
+                  option.textContent = key;
+                  selectElement.appendChild(option);
+
+                  if (i == 0) {
+                    inputElement.value = jsonData[key]
+                  }
+
+                  i += 1;
+              }
+
+              a = document.getElementsByClassName("column-per-50");
+
+              if (a.length > 1) {
+                a[1].style.paddingLeft = "40px";
+              }
+
+              selectElement.addEventListener('change', function() {
+                var selectedValue = selectElement.value;
+                if (jsonData.hasOwnProperty(selectedValue)) {
+                  inputElement.value = jsonData[selectedValue];
+                } else {
+                  inputElement.value = '';
+                }
+              });
+            </script>
+          </body>
+        </html>

@@ -1,0 +1,1052 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+        <title>Admin Panel</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+    
+        <!-- Favicons -->
+        <link href="{% static '/images/dashboard/favicon.png' %}" rel="icon">
+        <link href="{% static '/images/dashboard/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    
+        <!-- Vendor CSS Files -->
+        <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        
+        <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/dashboardd.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/database.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/spinner.css' %}">
+        
+        <style>
+            .spacerh {
+                padding: 10px;
+            }
+
+            label.dp_label {
+                font-size: medium;
+                padding-bottom: 20px;
+            }
+
+            .results tr[visible='false'],
+            .no-result{
+                display:none;
+            }
+
+            .results tr[visible='true']{
+                display:table-row;
+            }
+
+            .counter{
+                padding:8px; 
+                color:#ccc;
+            }
+              
+            .dropdown-menu {
+                max-height: 20rem;
+                overflow-y: auto;
+            }
+        </style>
+
+        <style>
+            /* Large devices (desktops, 992px and up) */
+            @media (min-width: 992px) and (max-width: 1199.98px) {
+                .card-columns {
+                    -webkit-column-count: 2;
+                    -moz-column-count: 2;
+                    column-count: 2;
+                }
+                .editContainer .card-columns {
+                    -webkit-column-count: 1;
+                    -moz-column-count: 1;
+                    column-count: 1;
+                }
+            }
+            
+            /* Extra large devices (large desktops, 1200px and up) */
+            @media (min-width: 1200px) {
+                .card-columns {
+                    -webkit-column-count: 3;
+                    -moz-column-count: 3;
+                    column-count: 3;
+                }
+                .editContainer .card-columns {
+                    -webkit-column-count: 2;
+                    -moz-column-count: 2;
+                    column-count: 2;
+                }
+            }
+            
+            .card-columns1 {
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                column-count: 1;
+            }
+            
+            .card-columns2 {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+            
+                column-count: 2;
+            }
+
+            .destination-select {
+                border: none !important;
+            }
+
+            .mb-12.linear_view {
+                padding-bottom: 26px;
+            }
+
+            .my_counter {
+                padding: 10px;
+            }
+
+            .formemails_selection{
+                display: flex;
+            }
+
+        </style>
+
+    </head>
+
+<body>
+
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        <div id="spinner_text">Loading...</div>
+    </div>
+
+    <input type="text" id="dropdown_coins" style="display:none" value="{{pk}}">
+
+    <div class="modal fade" id="disappearinginfo" tabindex="-1" aria-labelledby="disappearinginfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="disappearinginfoLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="message_name">
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-control-wrapper">
+                            <input type="text" id="date-fr" class="form-control floating-label" value="18/03/2015 08:00" placeholder="Select Time">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="create_diss" class="btn btn-primary">create</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="assign_formd" tabindex="-1" aria-labelledby="assign_formdLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assign_formdLabel">Assign Destination</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-12 linear_view">
+                    <label for="recipient-name" class="col-form-label col-6">Select Destination</label>
+                    <div class="form-group pull-right col-6">
+                        <div class="dropdown">
+                            <button class="btn linear_btn btn-secondary dropdown-toggle drop_btn" type="button" id="selected_destination" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Destinations
+                            </button>
+                            <div id="menu" class="dropdown-menu">
+                                <form class="px-4 py-2">
+                                    <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                </form>
+                                <div class = "des_menu" id="menuItems1">
+                                    {% if my_destinations == 'nothing' %}
+                            
+                                    <input type="button" class="dropdown-item mysearch_item2" value="EMPTY">
+
+                                    {% else %}
+
+                                        {% for my_destination in my_destinations %}
+                                            <input type="button" class="dropdown-item mysearch_item" value="{{my_destination.name}}">
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                    {% else %}
+
+                                    {% if pk != "disable" %}
+                                            <option value="{{pk}}">{{pk}}</option>
+                                        {% endif %}
+
+                                        {% for destination in total_destinations %}
+                                            {% if pk != destination.name %}
+                                                <option value="{{ destination.name }}">{{ destination.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% endif %}
+                                </div>
+                                <div id="empty" class="dropdown-header empty">No data found</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="assign_form-destination" class="btn btn-primary">Save</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit_details" tabindex="-1" aria-labelledby="edit_detailsLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit_detailsLabel">Assign Destination</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">SelectedForm:</label>
+                    <input type="text" class="form-control" id="selectedform_edit" disabled>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Username:</label>
+                    <input type="text" class="form-control" id="editform_user">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Emails:</label>
+                    <input type="text" class="form-control" id="editform_email">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="EditFormDetails" class="btn btn-primary">Save</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_contact" tabindex="-1" aria-labelledby="create_contactLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="create_contactLabel">New contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="useremail">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Phone:</label>
+                    <input type="text" class="form-control" id="userphone">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="createcontact" class="btn btn-primary">create</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="assign_email" tabindex="-1" aria-labelledby="assign_emailLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assign_emailLabel">Add Emails</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-12 linear_view formemails_selection">
+                    <label for="recipient-name" class="col-form-label col-6">Select Forms</label>
+                    <div class="form-group pull-right col-6">
+                        <div class="dropdown">
+                            <button class="btn linear_btn btn-secondary dropdown-toggle eset_btn" type="button" id="selected_eform" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Forms
+                            </button>
+                            <div id="menu" class="dropdown-menu">
+                                <form class="px-4 py-2">
+                                    <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                </form>
+                                <div class = "emails_set" id="menuItems1">
+                                    {% if my_forms == 'nothing' %}
+                            
+                                    <input type="button" class="dropdown-item mysearch_item2" value="EMPTY">
+
+                                    {% else %}
+
+                                        {% for my_form in my_forms %}
+                                            <input type="button" class="dropdown-item mysearch_item" id="{{my_form.name}}" value="{{my_form.name}}">
+                                        {% endfor %}
+
+                                    {% endif %}
+                                </div>
+                                <div id="empty2" class="dropdown-header empty">No data found</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="form_username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="form_useremail">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="createnew_email" class="btn btn-primary">Add</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createproduct" tabindex="-1" aria-labelledby="createproductLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createproductLabel">New Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="productname">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Item Number:</label>
+                    <input type="text" class="form-control" id="itemnumber">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Shipping:</label>
+                    <input type="text" class="form-control" id="item_shipping">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Tax:</label>
+                    <input type="text" class="form-control" id="item_tax">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Sales Price:</label>
+                    <input type="text" class="form-control" id="sales_price">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Purchase Price:</label>
+                    <input type="text" class="form-control" id="purchase_price">
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Others:</label>
+                    <input type="text" class="form-control" id="other_price">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="create_product" class="btn btn-primary">create</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                <img src="{% static '/images/dashboard/logo.png' %}" alt="">
+                <span class="d-none d-lg-block">Admin Panel</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="{% static '/images/dashboard/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{% if request.user.is_staff %}<h6 id="user_name">{{request.user}}</h6>{% else %}<h6>Not Staff</h6>{% endif %}</span>
+                    </a>
+                    <!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            {% if request.user.is_staff %}
+                            <h6 id="user_name">{{request.user}}</h6>
+                            {% else %}
+                            <h6>Not Staff</h6>
+                            {% endif %}
+                            {% if request.user.is_staff %}
+                            <span>{{request.user}}</span>
+                            {% endif %}
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'form_logout' %}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <div class="dropdown bootstrap-select show-tick form-control destination-select">
+                    <select name="destination-select" id="destination-select" class="form-control selectpicker show-tick destination-select">
+                        
+                        {% if pk == "none" %}
+
+                        <option value="null"> Select Destination </option>
+
+                        {% endif %}
+
+                        {% if destinations == 'nothing' %}
+                        <option value="EMPTY"> EMPTY </option>       
+                        {% else %}
+
+                            {% for destination in destinations %}
+                                <option value="{{destination.name}}"> {{destination.name}} </option>
+                            {% endfor %}
+
+                        {% endif %}
+                    </select>
+                </div>
+            </li>
+            <!-- End Dashboard Nav -->
+
+            <li class="nav-heading">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/">
+                    <i class="bi bi-person"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'form_logout' %}">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            
+            <li class="nav-item hiddenlogin">
+                <a class="nav-link collapsed" id="loginurl" href="{% url 'form_login' %}">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Login</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        {% if overlap == "yea" %}
+
+        {% endif %}
+
+        <div class="pagetitle">
+            <h1>Profile</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item">Users</li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- End Page Title -->
+
+        <section class="section profile">
+            <div class="row">
+
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general-settings">General</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#timed-info">Disappearing Info</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact_list">Contact List</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#product_list">Products</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#diss_records">Records</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#my_forms">Forms</button>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#assign_emails">Form Emails</button>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content pt-2">
+
+                                <div class="tab-pane fade show active general_settings pt-3" id="general-settings">
+
+                                    <div class="row mb-3">
+                                        <div class="form-group">
+                                            <label for="welcome_text">Welcome Text</label>
+                                            <textarea class="form-control"id="welcome_text" rows="3">{{welcome_text}}</textarea>
+                                        </div>
+    
+                                        <div class="spacerh"></div>
+    
+                                        <div class="form-group">
+                                            <label for="important_text">Important Information</label>
+                                            <textarea class="form-control" id="important_text" rows="3">{{important_text}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" id="general_info" class="btn btn-primary">Save</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="timed-info">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="mb-12 linear_view">
+                                            <label for="recipient-name" class="col-form-label col-6">Select Message</label>
+                                            <div class="form-group pull-right col-6">
+                                                <div class="dropdown">
+                                                    <button class="btn linear_btn btn-secondary dropdown-toggle drop_btn" type="button" id="selected_destination" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        Messages
+                                                    </button>
+                                                    <div id="menu" class="dropdown-menu">
+                                                        <form class="px-4 py-2">
+                                                            <input type="search" class="form-control des_drop" id="searchCoin" placeholder="Search" autofocus="autofocus">
+                                                        </form>
+                                                        <div class = "des_menu" id="menuItems1">
+                                                            {% if messages == 'nothing' %}
+                            
+                                                                <input type="button" class="dropdown-item mysearch_item" value="EMPTY">
+
+                                                            {% else %}
+
+                                                                {% for message in messages %}
+                                                                    <input type="button" class="dropdown-item mysearch_item" id="{{message.name}}" value="{{message.name}}">
+                                                                {% endfor %}
+
+                                                            {% endif %}
+                                                        </div>
+                                                        <div id="empty" class="dropdown-header empty">No data found</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Name:</label>
+                                            <input type="text" class="form-control" id="diss_name" disabled>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Time:</label>
+                                            <input type="text" class="form-control" id="diss_datetime" disabled>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="important_text">Message:</label>
+                                            <textarea class="form-control ckeditor" id="diss_message" rows="3" disabled></textarea>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" id="bot_detailsbtn" data-bs-toggle="modal" data-bs-target="#disappearinginfo" class="btn btn-primary">Create new</button>
+                                    </div>
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="contact_list">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="contacts_search form-control" placeholder="What you looking for?">
+                                            
+                                        </div>
+
+                                        <span class="contacts_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered contact_results">
+                                          <thead>
+                                            <tr>
+                                              <th class="col-md-4 col-xs-4">Name</th>
+                                              <th class="col-md-4 col-xs-4">Number</th>
+                                              <th class="col-md-4 col-xs-4">Email</th>
+                                            </tr>
+                                            <tr class="warning contact_noresult">
+                                              <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if contacts == 'nothing' %}
+                                                
+                                                <tr>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                </tr>
+
+                                            {% else %}
+
+                                                {% for contact in contacts %}
+                                                    <tr>
+                                                    <td>{{contact.name}}</td>
+                                                    <td>{{contact.phone}}</td>
+                                                    <td>{{contact.email}}</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            {% endif %}
+                                            
+                                          </tbody>
+                                        </table>
+                                        
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" data-bs-toggle="modal" data-bs-target="#create_contact" class="btn btn-primary">Create new</button>
+                                    </div>
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="product_list">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="product_search form-control" placeholder="Search for products!">
+                                        </div>
+
+                                        <span class="product_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered product_results">
+                                          <thead>
+                                            <tr>
+                                              <th class="col-md-1 col-xs-1">Name</th>
+                                              <th class="col-md-1 col-xs-1">Number</th>
+                                              <th class="col-md-1 col-xs-1">Shipping</th>
+                                              <th class="col-md-1 col-xs-1">Sales Price</th>
+                                              <th class="col-md-1 col-xs-1">Purchase Price</th>
+                                              <th class="col-md-1 col-xs-1">tax</th>
+                                              <th class="col-md-1 col-xs-1">other</th>
+                                              <th class="col-md-1 col-xs-1">Status</th>
+                                              <th class="col-md-1 col-xs-1">Change Status</th>
+                                              <th class="col-md-1 col-xs-1">Date Added</th>
+                                            </tr>
+                                            <tr class="warning products_noresult">
+                                              <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if products == 'nothing' %}
+                                                
+                                                <tr>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                </tr>
+
+                                            {% else %}
+
+                                                {% for product in products %}
+                                                    <tr>
+                                                    <td>{{product.name}}</td>
+                                                    <td>{{product.number}}</td>
+                                                    <td>{{product.shipping}}</td>
+                                                    <td>{{product.sales_price}}</td>
+                                                    <td>{{product.purchase_price}}</td>
+                                                    <td>{{product.tax}}</td>
+                                                    <td>{{product.other}}</td>
+                                                    <td>{% if not product.status %}Inactive{% else %}Active{% endif %}</td>
+                                                    <td><a id="{{product.number}}" onclick="change_productstatus(this.id)">Change</a></td>
+                                                    <td>{{product.date_created}}</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            {% endif %}
+                                            
+                                          </tbody>
+                                        </table>
+                                        
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" data-bs-toggle="modal" data-bs-target="#createproduct" class="btn btn-primary">Create new</button>
+                                    </div>
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="diss_records">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="diss_search form-control" placeholder="What you looking for?">
+                                            
+                                        </div>
+
+                                        <span class="diss_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered contact_results diss_results">
+                                          <thead>
+                                            <tr>
+                                              <th class="col-md-2 col-xs-2">Name</th>
+                                              <th class="col-md-2 col-xs-2">Info</th>
+                                              <th class="col-md-2 col-xs-2">Removing Time</th>
+                                              <th class="col-md-2 col-xs-2">Client</th>
+                                              <th class="col-md-2 col-xs-2">Destination</th>
+                                            </tr>
+                                            <tr class="warning diss_noresult">
+                                              <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if records == 'nothing' %}
+                                                
+                                                <tr>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                </tr>
+
+                                            {% else %}
+
+                                                {% for record in records %}
+                                                    <tr>
+                                                    <td>{{record.name}}</td>
+                                                    <td>{{record.info}}</td>
+                                                    <td>{{record.disappearing_time}}</td>
+
+                                                    {% for my_des in  record.destination.all %}
+                                                        
+                                                        {% for my_user in my_des.user.all %}
+                                                            <td>{{my_user.name}}</td>
+                                                        {% endfor %}
+
+                                                        <td>{{my_des.name}}</td>
+                                                    {% endfor %}
+
+                                                    </tr>
+                                                {% endfor %}
+
+                                            {% endif %}
+                                            
+                                          </tbody>
+                                        </table>
+                                        
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="my_forms">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="mforms_search form-control" placeholder="What you looking for?">
+                                            
+                                        </div>
+
+                                        <span class="mform_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered mform_results">
+                                          <thead>
+                                            <tr>
+                                              <th class="col-md-2 col-xs-2">Name</th>
+                                              <th class="col-md-2 col-xs-2">Url</th>
+                                              <th class="col-md-2 col-xs-2">Destination</th>
+                                              <th class="col-md-2 col-xs-2">Date Created</th>
+                                              <th class="col-md-2 col-xs-2">Delete</th>
+                                            </tr>
+                                            <tr class="warning mform_noresult">
+                                              <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if my_forms == 'nothing' %}
+                                                
+                                                <tr>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                <td>Empty</td>
+                                                </tr>
+
+                                            {% else %}
+
+                                                {% for my_form in my_forms %}
+                                                    <tr>
+                                                        <td>{{my_form.name}}</td>
+
+                                                        {% for my_des in  my_form.destination.all %}
+                                                            
+                                                            {% for my_user in my_des.user.all %}
+                                                                <td><a href="{{passed_url}}/{{my_form.name}}/{{my_des.name}}/'phone_number'">{{passed_url}}/{{my_user.id}}/{{my_des.name}}/'phone_number'</a></td>
+                                                            {% endfor %}
+
+                                                            <td>{{my_des.name}}</td>
+
+                                                            {% empty %}
+
+                                                            <td>NO URL</td>
+
+                                                            <td> <a id="{{my_form.name}}" data-bs-toggle="modal" onclick="selected_form=this.id" data-bs-target="#assign_formd">assign</a></td>
+                                                            
+                                                        {% endfor %}
+
+                                                        <td>{{my_form.date_created}}</td>
+
+                                                        <td><a class="frm_delete" id="{{my_form.name}}" onClick="delete_form(this.id)">Delete</a></td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            {% endif %}
+                                            
+                                          </tbody>
+                                        </table>
+                                        
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="assign_emails">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+
+                                        <div class="mb-12 linear_view formemails_selection">
+                                            <label for="recipient-name" class="col-form-label col-6">Select Forms</label>
+                                            <div class="form-group pull-right col-6">
+                                                <div class="dropdown">
+                                                    <button class="btn linear_btn btn-secondary dropdown-toggle edrop_btn" type="button" id="selected_form" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        Forms
+                                                    </button>
+                                                    <div id="menu" class="dropdown-menu">
+                                                        <form class="px-4 py-2">
+                                                            <input type="search" class="form-control des_drop" id="searchform_m" placeholder="Search" autofocus="autofocus">
+                                                        </form>
+                                                        <div class = "emails_fetch" id="menuItems1">
+                                                            {% if my_forms == 'nothing' %}
+                                                    
+                                                            <input type="button" class="dropdown-item mysearch_item2" value="EMPTY">
+                        
+                                                            {% else %}
+                        
+                                                                {% for my_form in my_forms %}
+                                                                    <input type="button" class="dropdown-item mysearch_item" id="{{my_form.name}}" value="{{my_form.name}}">
+                                                                {% endfor %}
+                        
+                                                            {% endif %}
+                                                        </div>
+                                                        <div id="empty1" class="dropdown-header empty">No data found</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group pull-right col-4">
+                                            <input type="text" class="emails_search form-control" placeholder="What you looking for?">
+                                        </div>
+
+                                        <span class="emails_counter my_counter pull-right"></span>
+
+                                        <table id="form_emails" class="table table-hover table-bordered emails_results">
+                                          <thead>
+                                            <tr>
+                                              <th class="col-md-2 col-xs-2">Name</th>
+                                              <th class="col-md-2 col-xs-2">Email</th>
+                                              <th class="col-md-2 col-xs-2">Delete</th>
+                                              <th class="col-md-2 col-xs-2">Edit</th>
+                                            </tr>
+                                            <tr class="warning emails_noresult">
+                                              <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                                
+                                            <tr>
+                                            <td>Empty</td>
+                                            <td>Empty</td>
+                                            <td>Empty</td>
+                                            <td>Empty</td>
+                                            </tr>
+                                            
+                                          </tbody>
+                                        </table>
+                                        
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#assign_email" class="btn btn-primary">Create new</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- End Bordered Tabs -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" integrity="sha512-WWc9iSr5tHo+AliwUnAQN1RfGK9AnpiOFbmboA0A0VJeooe69YR2rLgHw13KxF1bOSLmke+SNnLWxmZd8RTESQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="{% static '/js/dashboard/spinner.js' %}"></script>
+    
+    <script src="{% static '/js/dashboard/apexcharts.min.js' %}"></script>
+
+    <!-- Template Main JS File -->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js" integrity="sha512-dG5ZzvFUfkBdjYdJbsKdGGh8tOa9fv9wHmiChCFJYHRIW1XgfxN2cGzt2HaEPeunXqbAQXBOJvSBQpGOl0qikw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/bootstrap-material-datetimepicker.css' %}">
+    <script type="text/javascript" src="{% static '/js/dashboard/bootstrap-material-datetimepicker.js' %}"></script>
+
+    <script>
+        $('.selectpicker').selectpicker();
+    </script>
+
+    <script src="{% static '/js/dashboard/dashboard.js' %}"></script>
+
+</body>
+
+</html>

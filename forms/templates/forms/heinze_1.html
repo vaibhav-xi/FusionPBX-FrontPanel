@@ -1,0 +1,765 @@
+<!doctype html>
+      <html>
+        <head>
+        <title>Form</title>
+        <!--[if !mso]>-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--<![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>        
+        <style>
+          .hr-form-builder {
+            opacity: 1;
+            background-color: transparent;
+          }         
+          div[id^="date_input_"] input,
+          div[id^="datetime_input_"] input {
+              border-top-right-radius: 0 !important;
+              border-bottom-right-radius: 0 !important;
+          }
+          .dz-button {
+            background: none;
+            border: 0;
+          }
+          .dropzone {
+            min-height: auto;
+            padding: 0;
+            margin: 0;
+          }
+          .dropzone .dz-message {
+            margin: 0;
+          }
+        </style>
+        <style type="text/css">
+            @media only screen and (min-width:751px) {
+              .column-per-20 {
+                  width: 19.4% !important;
+                  max-width: 19.4%;
+              }
+              .column-per-25 {
+                  width: 24.4% !important;
+                  max-width: 24.4%;
+              }
+              .column-per-33 {
+                  width: 32.8% !important;
+                  max-width: 32.8%;
+              }
+              .column-per-50 {
+                  width: 49.4% !important;
+                  max-width: 49.4%;
+              }
+              .column-per-66 {
+                  width: 66.3% !important;
+                  max-width: 66.3%;
+              }
+              .column-per-100 {
+                  width: 100% !important;
+                  max-width: 100%;
+              }
+            }
+        </style>
+</head>
+            <body class="d-flex min-vh-100" style="align-items: flex-start;font-family: 'Helvetica Neue', Helvetica, sans-serif;font-size: 16px;background: #f5f5f5;padding: 15px;">
+              <form method="post" action="" class="container-fluid user-select-auto mx-auto" style="background: #ffffff;max-width: 900px;padding: 15px;border-radius: 8px;border: solid 1px #ced4da">
+                <div style="display:none">
+                    <input type="text" class="form-control" id="set_receiver" name="receiver_email" value="" style="display:none;">
+                  </div>
+                <div style="padding-top: 10px;
+                padding-right: 0px;
+                padding-bottom: 10px;
+                padding-left: 0px;
+                border-radius: 0px;min-height: auto;">
+                    <label class="" style="color: #000000;font-size: 14px">
+                        <span class="d-inline-block">Emails</span></label>
+                    <select class="form-control"
+                        name="dropdown-54071c5f"
+                        id="my_emails"
+                        style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px">
+                    
+                    '</select>
+                </div>
+              <div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <h2>Bearbeitungshinweis:</h2>
+
+<p>Es ist wichtig, das wir die <strong>Adressdaten </strong>sowie <strong>Kontaktdaten </strong>des Anrufers aufnehmen. Die anderen Abschnitte wie <strong>Produktqualifizierung</strong>, <strong>Projektdetails</strong> und <strong>Anforderungen </strong>sind <strong>nicht zwingend notwendig</strong>. Wenn der Anrufer bereit ist die Fragen zu beantworten w&auml;re es f&uuml;r den Kunden hilfreich, aber es ist nicht ziwngend notwendig. Die meisten Anrufer m&ouml;chten vermutlich nur einen schnellen R&uuml;ckruf erhalten.</p>
+
+        </div><div class="container-fluid p-0">
+<div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <h3>Adressdaten</h3>
+
+        </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Unternehmen</span>
+            </label><input type="text" class="form-control"
+        name="Unternehmen"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Name</span>
+            <span class="text-danger d-inline-block">*</span></label><input type="text" class="form-control"
+        name="Name"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  required  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Adresse</span>
+            </label><input type="text" class="form-control"
+        name="Adresse"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">PLZ</span>
+            </label><input type="text" class="form-control"
+        name="PLZ"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Land</span>
+            </label><input type="text" class="form-control"
+        name="Land"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Email Adresse</span>
+            </label><input type="text" class="form-control"
+        name="Email Adresse"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Telefon Nummer</span>
+            <span class="text-danger d-inline-block">*</span></label><input type="text" class="form-control"
+        name="Telefon Nummer"
+        autocomplete="off"
+        placeholder="..."
+        id="{{phone_number}}"
+        value="{{phone_number}}"
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  required  /></div></div><div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <h3>Kontaktdaten</h3>
+
+        </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+        <span class="d-inline-block">Was sind Sie?</span><span class="text-danger d-inline-block ms-1">*</span></label><div class="form-check">
+                        <input class="form-check-input" type="radio" name="Was sind Sie?" 
+                          id="radio_89a016d3-21cb-1134-26b3-a75abf4a1bab" value="Architekt / Planer" checked  required >
+                        <label class="form-check-label" 
+                          style="color: #000000;font-size: 14px;" 
+                          for="radio_89a016d3-21cb-1134-26b3-a75abf4a1bab">Architekt / Planer</label>
+                    </div>
+<div class="form-check">
+                        <input class="form-check-input" type="radio" name="Was sind Sie?" 
+                          id="radio_be25c6cc-776e-cb9d-d95a-c3fd61f424d5" value="Verarbeiter"  required >
+                        <label class="form-check-label" 
+                          style="color: #000000;font-size: 14px;" 
+                          for="radio_be25c6cc-776e-cb9d-d95a-c3fd61f424d5">Verarbeiter</label>
+                    </div>
+<div class="form-check">
+                        <input class="form-check-input" type="radio" name="Was sind Sie?" 
+                          id="radio_28c9e3d2-f548-49cf-4c9a-a439bac12d05" value="Bauherr"  required >
+                        <label class="form-check-label" 
+                          style="color: #000000;font-size: 14px;" 
+                          for="radio_28c9e3d2-f548-49cf-4c9a-a439bac12d05">Bauherr</label>
+                    </div>
+<div class="form-check">
+                        <input class="form-check-input" type="radio" name="Was sind Sie?" 
+                          id="radio_cc21bf68-3bf9-9635-1926-044c8e971063" value="GU"  required >
+                        <label class="form-check-label" 
+                          style="color: #000000;font-size: 14px;" 
+                          for="radio_cc21bf68-3bf9-9635-1926-044c8e971063">GU</label>
+                    </div>
+<div class="form-check">
+                        <input class="form-check-input" type="radio" name="Was sind Sie?" 
+                          id="radio_06551e2f-6915-c489-776e-d16d6567f444" value="Investor"  required >
+                        <label class="form-check-label" 
+                          style="color: #000000;font-size: 14px;" 
+                          for="radio_06551e2f-6915-c489-776e-d16d6567f444">Investor</label>
+                    </div>
+<div class="form-check">
+                        <input class="form-check-input" type="radio" name="Was sind Sie?" 
+                          id="radio_7a9a329a-cacd-7e9b-6952-c15e3da5d34a" value="Privatbauherr"  required >
+                        <label class="form-check-label" 
+                          style="color: #000000;font-size: 14px;" 
+                          for="radio_7a9a329a-cacd-7e9b-6952-c15e3da5d34a">Privatbauherr</label>
+                    </div></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;" class="mj-outlook-group-fix">
+                <hr class="hr-form-builder" style="margin:0;border-top-style: solid;border-top-width: 1px;">
+                </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <h5>Wie sind Sie auf uns Aufmerksam geworden?</h5>
+
+        </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Heinze" value="1" id="3552c25c-850e-58d4-ce86-2fc3e990832f" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="3552c25c-850e-58d4-ce86-2fc3e990832f">            
+            Heinze 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Messe (z.B. BAU)" value="1" id="90cca589-3244-cedd-3c66-c7c9f1c7293a" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="90cca589-3244-cedd-3c66-c7c9f1c7293a">            
+            Messe (z.B. BAU) 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="SIKG" value="1" id="33c5d5e4-8773-b79f-9760-a20fb7d5b25a" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="33c5d5e4-8773-b79f-9760-a20fb7d5b25a">            
+            SIKG 
+        </label>
+    </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Sonstiges Kontaktdaten</span>
+            </label><input type="text" class="form-control"
+        name="Sonstiges Kontaktdaten"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div></div></div><div class="clearfix"></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;" class="mj-outlook-group-fix">
+                <hr class="hr-form-builder" style="margin:0;border-top-style: solid;border-top-width: 1px;">
+                </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <h3>Produktqualifizierung</h3>
+
+        </div><div class="container-fluid p-0">
+<div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <p>An welchem unserer Produkte sind Sie haupts&auml;chlich interessiert? Bzw. ben&ouml;tigen Sie eine statische oder dynamische Installation zur Raumgestaltung?</p>
+
+        </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="statische Raumtrennung / Trennwandsystem" value="1" id="9d384d6f-3c8f-9cb0-b520-2c53d1919663" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="9d384d6f-3c8f-9cb0-b520-2c53d1919663">            
+            statische Raumtrennung / Trennwandsystem 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="statische Raumgestaltung / Openstyle" value="1" id="0f9f82f3-4b2d-fffa-a4a3-d6d1bc96200a" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="0f9f82f3-4b2d-fffa-a4a3-d6d1bc96200a">            
+            statische Raumgestaltung / Openstyle 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="dynamische Raumgestaltung / MST / Openstyle" value="1" id="5fa68d5b-010c-500b-0233-d19138f96296" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="5fa68d5b-010c-500b-0233-d19138f96296">            
+            dynamische Raumgestaltung / MST / Openstyle 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Regalsysteme Smartcube/-frame, Mandeo" value="1" id="cb3561c1-5600-a9d3-faa2-d132f677dc94" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="cb3561c1-5600-a9d3-faa2-d132f677dc94">            
+            Regalsysteme Smartcube/-frame, Mandeo 
+        </label>
+    </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block"> Sonstiges Produktqualifizierung</span>
+            </label><input type="text" class="form-control"
+        name=" Sonstiges Produktqualifizierung"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div></div><div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <p>Falls noch&nbsp;<strong>keine</strong>&nbsp;<strong>genaueren</strong>&nbsp;<strong>Projektdetails</strong>&nbsp;vorliegen: inhaltlicher Kontaktwunsch[&hellip;]?</p>
+
+        </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Versand Produktinformationen je System" value="1" id="a41198e7-51af-dcbc-2531-6f62e1ebbe12" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="a41198e7-51af-dcbc-2531-6f62e1ebbe12">            
+            Versand Produktinformationen je System 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Versand Produktfolder (AP VS 43 ST)" value="1" id="e83c4ad5-369a-6393-276a-d968918f7256" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="e83c4ad5-369a-6393-276a-d968918f7256">            
+            Versand Produktfolder (AP VS 43 ST) 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Versand Datenblatt (AP VS 43 ST)" value="1" id="7c6d5db9-539b-f3be-409d-ced7a308cd54" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="7c6d5db9-539b-f3be-409d-ced7a308cd54">            
+            Versand Datenblatt (AP VS 43 ST) 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Versand Anfrageformular je Produkt" value="1" id="2bacc2a4-49d8-1771-9e57-dfadb0628bcb" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="2bacc2a4-49d8-1771-9e57-dfadb0628bcb">            
+            Versand Anfrageformular je Produkt 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Versand Muster je Produkt" value="1" id="a96261a3-3de9-2937-e793-2409b7426db2" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="a96261a3-3de9-2937-e793-2409b7426db2">            
+            Versand Muster je Produkt 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Beratung durch den AD" value="1" id="3b2b30ef-148e-6043-286a-1d6fb481b2b6" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="3b2b30ef-148e-6043-286a-1d6fb481b2b6">            
+            Beratung durch den AD 
+        </label>
+    </div></div></div><div class="clearfix"></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;" class="mj-outlook-group-fix">
+                <hr class="hr-form-builder" style="margin:0;border-top-style: solid;border-top-width: 1px;">
+                </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <h3>Projektdetails</h3>
+
+        </div><div class="container-fluid p-0">
+<div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <p>Wie hei&szlig;t Ihr Objekt bzw. wie w&uuml;rden Sie den&nbsp;<strong>Einsatzbereich</strong>&nbsp;beschreiben?</p>
+
+        </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Bürogebäude" value="1" id="eab05204-e70d-9159-12a1-17a56b3d333e" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="eab05204-e70d-9159-12a1-17a56b3d333e">            
+            Bürogebäude 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Hotelgebäude" value="1" id="66593323-df6d-2eae-3f7a-038f2db76b2e" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="66593323-df6d-2eae-3f7a-038f2db76b2e">            
+            Hotelgebäude 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Privatbereich" value="1" id="ace09bcf-56a6-21dd-37de-75746318dc71" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="ace09bcf-56a6-21dd-37de-75746318dc71">            
+            Privatbereich 
+        </label>
+    </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Sonstiges Projektdetails</span>
+            </label><input type="text" class="form-control"
+        name="Sonstiges Projektdetails"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;" class="mj-outlook-group-fix">
+                <hr class="hr-form-builder" style="margin:0;border-top-style: solid;border-top-width: 1px;">
+                </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+    <label class="" style="color: #000000;font-size: 14px">
+        <span class="d-inline-block">Wie würden Sie die Lage Ihres Objektes beschreiben?</span></label>
+        <textarea class="form-control"
+            name="Wie würden Sie die Lage Ihres Objektes beschreiben?"
+            placeholder="..."
+            style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px;"></textarea>
+        </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+    <label class="" style="color: #000000;font-size: 14px">
+        <span class="d-inline-block">In welcher Phase befindet sich Ihr Projekt bzw. wie ist der aktuelle Status?</span></label>
+        <textarea class="form-control"
+            name="In welcher Phase befindet sich Ihr Projekt bzw. wie ist der aktuelle Status?"
+            placeholder="..."
+            style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px;"></textarea>
+        </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+    <label class="" style="color: #000000;font-size: 14px">
+        <span class="d-inline-block">Wie sieht die weitere Zeitplanung aus?</span></label>
+        <textarea class="form-control"
+            name="Wie sieht die weitere Zeitplanung aus?"
+            placeholder="..."
+            style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px;"></textarea>
+        </div></div><div class="column-per-50 d-inline-block w-100 float-start">
+<div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+    <label class="" style="color: #000000;font-size: 14px">
+        <span class="d-inline-block">Gibt es Anforderungen, die das Trennwandsystem in Ihrem Anwendungsfall erfüllen sollte?</span></label>
+        <textarea class="form-control"
+            name="Gibt es Anforderungen, die das Trennwandsystem in Ihrem Anwendungsfall erfüllen sollte?"
+            placeholder="..."
+            style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px;"></textarea>
+        </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;line-height: 1.5;font-family: 'Helvetica Neue', Helvetica, sans-serif;" class="text-break">
+        <p>Sind diese Anforderungen normativ?</p>
+
+        </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Schallschutz" value="1" id="c0516125-2574-b2d0-76bb-fe83ae541c83" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="c0516125-2574-b2d0-76bb-fe83ae541c83">            
+            Schallschutz 
+        </label>
+    </div><div class="form-check" style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <input type="checkbox" class="form-check-input ms-0 me-2" name="Absturzsicherung" value="1" id="95bb8bce-71cc-e09b-4320-624e16e21a70" />
+        <label class="form-check-label" style="color: #000000;font-size: 14px" for="95bb8bce-71cc-e09b-4320-624e16e21a70">            
+            Absturzsicherung 
+        </label>
+    </div><div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;">
+        <label class="" style="color: #000000;font-size: 14px">
+            <span class="d-inline-block">Sonstiges Anforderungen</span>
+            </label><input type="text" class="form-control"
+        name="Sonstiges Anforderungen"
+        autocomplete="off"
+        placeholder="..."
+        id="undefined"
+        value=""
+              style="background-color: #ffffff;border: solid 1px #ced4da;border-radius: 5px"  /></div></div></div><div class="clearfix"></div>
+              <div style="padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    
+    border-radius: 0px;min-height: auto;"><center><table cellpadding="0" cellspacing="0" style="margin:0;border-collapse:collapse;" align="center">
+          <tr>
+            <td style="vertical-align: middle"><button type="submit" style="padding:0 15px;text-decoration:none;display:block;text-align:center;border:0;color:#FFFFFF;font-family: 'Helvetica Neue', Helvetica, sans-serif;font-size: 16px;height: 30px; line-height: 30px;background-color: #0143a3;width:auto;">
+        Absenden
+      </button></td>
+          </tr>
+        </table></center><div style="clear: both"></div></div>
+</form>            
+            <script type="text/javascript">
+            Dropzone.autoDiscover = false;
+            $(document).ready(function(){
+                $(function () {
+                  $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+                    icons: {
+                        time: 'far fa-clock',
+                        date: 'far fa-calendar',
+                        up: 'fas fa-arrow-up',
+                        down: 'fas fa-arrow-down',
+                        previous: 'fas fa-chevron-left',
+                        next: 'fas fa-chevron-right',
+                        today: 'far fa-calendar-check-o',
+                        clear: 'far fa-trash',
+                        close: 'far fa-times'
+                    } });
+
+                    $('div[id^="datetime_input_"]').datetimepicker({
+                      format: "YYYY-MM-DD HH:mm",
+                      focusOnShow: false,
+                    });
+
+                    $('div[id^="date_input_"]').datetimepicker({                        
+                      format: "YYYY-MM-DD",
+                      focusOnShow: false,
+                    });
+
+                    $('div[id^="dropzone_"]').each(function() {   
+                      console.log($(this).data('max-file-size'))                   
+                      $(this).dropzone({
+                        addRemoveLinks: true,
+                        url: $(this).data('upload-url'),
+                        paramName: $(this).data('param-name'),
+                        dictDefaultMessage: $(this).data('message'),
+                        acceptedFiles: $(this).data('accepted-files'),
+                        maxFilesize: $(this).data('max-file-size')
+                      });
+                    });
+                });
+            });
+            </script>
+
+            <script>
+
+                var jsonString = "{{ data | safe }}";
+                var inputElement = document.getElementById('set_receiver');
+  
+                // Replace double quotes with single quotes
+                var singleQuotedString = jsonString.replace(/'/g, '"');
+  
+                // Parse the modified JSON string
+                var jsonData = JSON.parse(singleQuotedString);
+  
+                var selectElement = document.getElementById('my_emails');
+                // selectElement.name = 'send_email';
+
+                function replaceTextareaWithDiv(textareaId) {
+                    const textarea = document.getElementById(textareaId);
+            
+                    const rawHTML = textarea.getAttribute('placeholder');
+            
+                    const newDiv = document.createElement('div');
+            
+                    newDiv.innerHTML = rawHTML;
+            
+                    textarea.parentNode.replaceChild(newDiv, textarea);
+    
+                    const anchorElements = newDiv.querySelectorAll('a');
+                    anchorElements.forEach((anchor) => {
+                      anchor.setAttribute('target', '_blank');
+                    });
+                  }
+    
+                  function setElementNameById(elementId, name) {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                      element.name = name;
+    
+                      if (elementId != 'my_emails') {
+                        replaceTextareaWithDiv(elementId);
+                      }
+                    }
+                  }
+    
+                  // document.getElementById('my_emails').name = 'send_email'
+                  // document.getElementById('disappearing_info').name = 'disappearing_info'
+                  // document.getElementById('important_info').name = 'important_info'
+                  // document.getElementById('welcome_text').name = 'welcome_text'
+    
+                  setElementNameById('my_emails', 'send_email');
+                  setElementNameById('disappearing_info', 'disappearing_info');
+                  setElementNameById('important_info', 'important_info');
+                  setElementNameById('welcome_text', 'welcome_text');
+  
+                for (var key in jsonData) {
+                    var option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = key;
+                    selectElement.appendChild(option);
+                }
+  
+                selectElement.addEventListener('change', function() {
+                  var selectedValue = selectElement.value;
+                  if (jsonData.hasOwnProperty(selectedValue)) {
+                    inputElement.value = jsonData[selectedValue];
+                  } else {
+                    inputElement.value = '';
+                  }
+                });
+              </script>
+              
+          </body>
+        </html>

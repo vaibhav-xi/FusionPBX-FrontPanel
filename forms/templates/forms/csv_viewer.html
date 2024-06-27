@@ -1,0 +1,557 @@
+{% load static %} {% load get_item %}
+
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+<style lang="en" type="text/css" id="dark-mode-native-style"></style>
+<style lang="en" type="text/css" id="dark-mode-native-sheet"></style>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>CSV Viewer</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static '/images/dashboard/favicon.png' %}" rel="icon">
+    <link href="{% static '/images/dashboard/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/dashboardd.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/database.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dashboard/spinner.css' %}">
+
+    <style>
+        /* Large devices (desktops, 992px and up) */
+        
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+            .editContainer .card-columns {
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                column-count: 1;
+            }
+        }
+        /* Extra large devices (large desktops, 1200px and up) */
+        
+        @media (min-width: 1200px) {
+            .card-columns {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
+            .editContainer .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+        }
+        
+        .card-columns1 {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+        
+        .card-columns2 {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+        }
+        
+        .destination-select {
+            border: none !important;
+        }
+        
+        .mb-12.linear_view {
+            display: flex;
+        }
+        
+        .btn-group.btn-toggle {
+            display: flex;
+        }
+        
+        .switch_btn {
+            font-size: 12px;
+            padding: 6px;
+        }
+        
+        .destination_cards {
+            display: block;
+        }
+        
+        .destination_chart {
+            display: block;
+        }
+        
+        .products_card {
+            display: none;
+        }
+        
+        .product_chart {
+            display: none;
+        }
+        
+        .pagetitle h1 {
+            margin: 10px 0px 40px 16px;
+        }
+        
+        .csv_table {
+            height: 750px;
+        }
+
+        .tab-pane {
+            overflow: scroll;
+            height: 690px;
+        }
+        
+        .sidebar-nav .nav-heading {
+            display: inline-block;
+        }
+        
+        .add_btn {
+            float: right;
+            margin-right: 15px;
+        }
+
+        .dataTable-table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1147.0" data-gr-ext-installed="">
+
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br>
+        <div id="spinner_text">Loading...</div>
+    </div>
+
+    <div class="modal fade" id="downloadmodal" tabindex="-1" role="dialog" aria-labelledby="downloadmodalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="downloadmodalLabel">Confirm Download</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">File:</label>
+                            <input type="text" class="form-control" id="file-name" disabled="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="openfile" class="btn btn-primary">Open</button>
+                    <button type="button" id="delfile" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center">
+                <span class="d-none d-lg-block">CSV Viewer</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="http://94.237.84.206:8000/csv_viewer/#">
+                <input type="text" class="csv_search" name="csv_search" placeholder="Search">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+        <!-- End Search Bar -->
+
+    </header>
+    <!-- End Header -->
+
+    <input type="file" id="fileInput" style="display: none;">
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-heading">Files</li>
+            <li id="uploadTrigger" class="add_btn nav-heading">ADD</li>
+
+            {% for file in files %}
+                <li class="nav-item">
+                    <a class="nav-link collapsed" onclick="download_file('{{file}}')">
+                        <i class="bi bi-filetype-csv"></i>
+                        <span>{{ file }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+
+            <li class="nav-heading">Download PDF</li>
+
+            <li class="nav-item">
+                <a id="{{pk}}" class="nav-link collapsed" onclick="down_pdf(this.id)">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    <span>Download</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>CSV Viewer</h1>
+        </div>
+        <!-- End Page Title -->
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-xl-12 csv_table">
+                        <div class="card">
+                            <div class="card-body pt-3">
+                                <!-- Bordered Tabs -->
+                                <ul class="nav nav-tabs nav-tabs-bordered">
+    
+                                    <li class="nav-item">
+                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general-view">General View</button>
+                                    </li>
+    
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#sorted-view">Sorted View</button>
+                                    </li>
+    
+                                </ul>
+                                <div class="tab-content pt-2">
+
+                                    <div class="tab-pane fade show active general_settings pt-3" id="general-view">
+
+                                        <span class="csv_counter my_counter pull-right"></span>
+
+                                        <table class="table table-hover table-bordered csv_results">
+                                            <thead>
+                                                <tr>
+                                                    {% for header in headers %}
+                                                        <th>{{ header }}</th>
+                                                    {% endfor %}
+                                                </tr>
+                                                <tr class="warning csv_noresult" style="display: none;">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for row in data %}
+                                                <tr>
+                                                    {% for header in headers %}
+                                                        <td>{{ row|get_item:header }}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+    
+                                    </div>
+
+                                    <div class="tab-pane fade general_settings pt-3" id="sorted-view">
+
+                                        <table class="table table-hover table-bordered datatable">
+                                            <thead>
+                                                <tr>
+                                                    {% for header in sorted_headers %}
+                                                        <th>{{ header }}</th>
+                                                    {% endfor %}
+                                                </tr>
+                                                <tr class="warning" style="display: none;">
+                                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for row in sorted_data %}
+                                                <tr onclick="select_me(this.id)" id="row-{% increment_counter forloop.counter0 %}">
+                                                    {% for header in sorted_headers %}
+                                                        <td>{{ row|get_item:header }}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+    
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+    <a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="{% static '/js/dashboard/spinner.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/simple-datatables.js' %}"></script>
+
+    <script src="{% static '/js/dashboard/tinymce/tinymce.min.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static '/js/dashboard/mainn.js' %}"></script>
+
+    <script>
+        var csrftoken = getCookie('csrftoken');
+        var printing_list = [];
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function download_file(url_route) {
+
+            $('#file-name').val(url_route);
+
+            $('#downloadmodal').modal('show');
+        }
+
+        $('#downloadfile').on('click', function() {
+
+            window.location.href = `/down_csv/${$('#file-name').val()}`;
+
+        });
+
+        $('#openfile').on('click', function() {
+
+            window.location.href = `/csv_viewer/${$('#file-name').val().replace(".csv", "")}`;
+
+        });
+
+        $('#delfile').on('click', function() {
+
+            // window.location.href = `/del_csv/${$('#file-name').val().replace(".csv", "")}`;
+
+            fetch('/del_csv/', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({ 'details': [$('#file-name').val().replace(".csv", "")] })
+            })
+            .then((resp) => resp.json())
+            .then(function(Responsedata) {
+        
+                console.log(Responsedata);
+        
+                window.location.href = "";
+            })
+
+        });
+
+        function reduce_work(searchValue, searchResult, searchCounter, noResult) {
+            $(`.${searchValue}`).keyup(function() {
+                var searchTerm = $(this).val().toLowerCase();
+                var listItem = $(`.${searchResult} tbody`).children('tr');
+                var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
+
+                $.extend($.expr[':'], {
+                    'containsi': function(elem, i, match, array) {
+                        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                    }
+                });
+
+                listItem.each(function() {
+                    var text = $(this).text().toLowerCase();
+                    if (text.indexOf(searchTerm) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+
+                var jobCount = $(`.${searchResult} tbody tr:visible`).length;
+                $(`.${searchCounter}`).text(jobCount + ' item');
+
+                if (jobCount === 0) {
+                    $(`.${noResult}`).show();
+                } else {
+                    $(`.${noResult}`).hide();
+                }
+            });
+
+            $(`.${noResult}`).hide();
+        }
+
+        $(document).ready(function() {
+            reduce_work("csv_search", "csv_results", "csv_counter", "csv_noresult");
+        });
+
+        document.getElementById('uploadTrigger').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', uploadFile);
+
+        function uploadFile() {
+            show_overlay();
+
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/csv_upload/', true);
+
+                xhr.onreadystatechange = function() {
+                    console.log("XHR STATUS: ", xhr.readyState);
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            // Handle the response from the server
+                            console.log('File uploaded successfully!');
+
+                            window.location.href = "";
+
+                        } else {
+                            console.log('Error uploading file.');
+
+                            window.location.href = "";
+                        }
+                    }
+                };
+
+                xhr.send(formData);
+            } else {
+                
+            }
+        }
+
+        function down_pdf(file_name) {
+            // window.location.href = `/down_pdf/${file_name}`;
+
+            if (printing_list.length <= 0) {
+                alert("Nothing Selected");
+                return;
+            }
+            
+            fetch('/csv_viewer/{{pk}}/', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({ 'details': [file_name, printing_list] })
+            })
+            .then((resp) => resp.json())
+            .then(function(Responsedata) {
+        
+                console.log(Responsedata);
+        
+                window.location.href = `/down_pdf/${file_name}`;
+            })
+
+        }
+
+        /*
+        btn_html = '<button onclick="down_pdf(this.id)" type="button" id="{{pk}}" class="btn btn-primary">Download pdf</button>'
+
+        var dataTableSearchDiv = document.querySelector('.dataTable-search');
+
+        if (dataTableSearchDiv) {
+            dataTableSearchDiv.innerHTML += btn_html;
+        } else {
+            console.error("Div with class 'dataTable-search' not found");
+        }
+        */
+
+        function select_me(my_id) {
+            // Get the selected row by ID
+            var selected_row = document.getElementById(my_id);
+        
+            // Check if the row is found
+            if (selected_row) {
+                // selected_row.style.backgroundColor = 'darkgrey';
+
+                // Get the content of the second <td> element
+                var name = selected_row.querySelector('td:nth-child(2)').textContent;
+
+                // Get the content of the third <td> element
+                // var second_name = selected_row.querySelector('td:nth-child(3)').textContent;
+
+                // var name = `${first_name}${second_name}`;
+
+                var index = printing_list.indexOf(name);
+        
+                if (index === -1) {
+                    // Name not in the list, add it and set the background color
+                    printing_list.push(name);
+                    selected_row.style.backgroundColor = 'darkgrey';
+                    console.log('Added to list and set background color. Full Name:', name);
+                } else {
+                    // Name is in the list, remove it and reset the background color
+                    printing_list.splice(index, 1);
+                    selected_row.style.backgroundColor = '';
+                    console.log('Removed from list and reset background color. Full Name:', name);
+                }
+            } else {
+                console.error('Row with ID', my_id, 'not found');
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

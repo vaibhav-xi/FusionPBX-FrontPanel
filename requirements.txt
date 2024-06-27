@@ -1,0 +1,12 @@
+FreeSWITCH-ESL-Python
+djangorestframework
+weasyprint
+reportlab
+websocket
+psycopg2
+requests
+gunicorn
+django
+pdfkit
+pytz
+bs4

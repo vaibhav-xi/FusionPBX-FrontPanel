@@ -1,0 +1,29 @@
+<script>
+    //let formValues = {"send_email": "Vaibhav", "input-2c83040d": "Some Value", "input-dcf038f9": "1263523653", "receiver_email": "vaibhav28890@gmail.com", "textarea-34386473": "YO HOI"}
+
+    var formValues = {{form_obj|safe}};
+
+    console.log("VALUES: ", formValues);
+
+    function setFormValues() {
+        // Get the form element by its ID
+        let form = document.getElementById("myForm");
+    
+        // Loop through the keys of the formValues object
+        for (let key in formValues) {
+            // Check if the object has the property
+            if (formValues.hasOwnProperty(key)) {
+                // Find the input element with the corresponding name attribute
+                let input = form.querySelector(`[name="${key}"]`);
+    
+                // Set the value of the input field
+                if (input) {
+                    input.value = formValues[key];
+                }
+            }
+        }
+    }
+
+    setFormValues();
+    
+</script>

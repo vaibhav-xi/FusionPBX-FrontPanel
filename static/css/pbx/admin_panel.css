@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ecf0f1;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    /* border: 1px solid black; */
+}
+
+.details-card {
+    background-color: white;
+    /* width: 395px; */
+    height: 60px;
+    margin: 5px;
+    /* border: solid black 1px; */
+    /* border-radius: 5px; */
+    /* padding: 5px; */
+}
+
+.disk-usage {
+    padding: 0;
+    padding-left: 12px;
+}
+
+.uptime-details {
+    background-color: white;
+    border: none;
+    /* width: 350px; */
+    height: 70px;
+    margin: 5px;
+}
+
+.sidebar-icons {
+    fill: black;
+}
+
+.card-svg {
+    fill: white;
+}
+
+.card-icon {
+    fill: white;
+    border-radius: 100%;
+    background-color: #88c351;
+    margin-top: 5px;
+    padding-top: 12px;
+    width: 50px;
+    height: 50px;
+}
+
+.card-text {
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 90.33%;
+}
+
+.uptime-card {
+    margin: 5px;
+    margin-top: 15px;
+    /* border-radius: 5px; */
+    /* border: solid 1px black; */
+    background-color: white;
+}
+
+.system-card {
+    margin-top: 10px;
+    margin-left: 17px;
+    background-color: white;
+}
+
+.uptime-icon {
+    padding-left: var(--icon-padding);
+}
+
+.top-cards {
+    margin-left: 1px;
+    width: 97.4%;
+    padding: 10px;
+}
+
+.chart {
+    border: 1px solid white;
+    background-color: white;
+    margin: 5px;
+}
+
+.box {
+    position: relative;
+    display: inline-block;
+}
+
+.box svg {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 1px;
+    top: 0;
+    bottom: 10px;
+    margin: auto;
+}
+
+.uptime {
+    width: 25%;
+}
+
+.traffic-chart {
+    width: 31.33%;
+}
+
+.hardware-info {
+    background-color: white;
+    /* border: solid 1px black; */
+    margin: 10px;
+}
+
+.system-info {
+    background-color: white;
+    /* border: solid 1px black; */
+    margin: 10px;
+    width: 30%;
+}
+
+.hardware-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.hwinfo-text {
+    padding: 2px;
+}
