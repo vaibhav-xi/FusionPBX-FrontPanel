@@ -1321,4 +1321,4 @@ function myFunction() {
     socket.send(JSON.stringify({ 'message': "fetch_data"}));
   }
   
-  setInterval(myFunction, 1000);
+  setInterval(myFunction, 500);
